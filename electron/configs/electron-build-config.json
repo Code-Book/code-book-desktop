@@ -1,0 +1,23 @@
+{
+    "appId": "com.codewhilenerd.codebook",
+    "productName": "CodeBook",
+    "directories": {
+        "output": "electron-builds",
+        "buildResources": "build/icon.*"
+    },
+    "win": {
+        "target": {
+            "target": "nsis",
+            "arch": [
+                "x64"
+            ]
+        }
+    },
+    "nsis": {
+        "oneClick": false,
+        "allowToChangeInstallationDirectory": true,
+        "perMachine": true,
+        "createDesktopShortcut": true,
+        "createStartMenuShortcut": true
+    }
+}

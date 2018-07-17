@@ -3,20 +3,25 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "version:update": "npm version $VERSION && cd ./electron && npm version $VERSION",
+    "start": "ng serve & npm run electron:start dev static",
+    "start:live": "ng serve --no-open & npm run electron:start dev live",
+    "electron:start": "cd ./electron && npm run start"
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^6.0.2",
+    "@angular/animations": "^6.0.9",
+    "@angular/cdk": "^6.4.0",
     "@angular/common": "^6.0.2",
     "@angular/compiler": "^6.0.2",
     "@angular/core": "^6.0.2",
     "@angular/forms": "^6.0.2",
     "@angular/http": "^6.0.2",
+    "@angular/material": "^6.4.0",
     "@angular/platform-browser": "^6.0.2",
     "@angular/platform-browser-dynamic": "^6.0.2",
     "@angular/router": "^6.0.2",
