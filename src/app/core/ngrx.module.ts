@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
+import { StoreRouterConnectingModule, RouterStateSerializer, RouterReducerState } from '@ngrx/router-store';
 import { StoreModule, ActionReducerMap } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -7,9 +7,7 @@ import { routerReducer } from '@ngrx/router-store';
 
 import { environment } from '../../environments/environment'; // Angular CLI environemnt
 import { Params, RouterStateSnapshot } from '@angular/router';
-import { SettingsModule } from '../settings/settings.module';
 import { RouterEffects } from './+router/router.effects';
-import { AppState } from './state';
 
 export interface RouterStateUrl {
     url: string;
@@ -34,9 +32,14 @@ export class CustomSerializer implements RouterStateSerializer<RouterStateUrl> {
     }
 }
 
-export const reducers: ActionReducerMap<AppState> = {
+export interface State {
+    router: RouterReducerState<RouterStateUrl>;
+}
+
+export const reducers: ActionReducerMap<State> = {
     router: routerReducer,
 };
+
 @NgModule({
     imports: [
         StoreModule.forRoot(reducers),
@@ -47,8 +50,7 @@ export const reducers: ActionReducerMap<AppState> = {
         }),
         StoreRouterConnectingModule.forRoot({
             stateKey: 'router', // name of reducer key
-        }),
-        SettingsModule.forRoot()
+        })
     ],
     providers: [{ provide: RouterStateSerializer, useClass: CustomSerializer }],
 })

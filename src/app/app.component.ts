@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from './core/index';
-import { tap, map, distinctUntilChanged } from 'rxjs/operators';
+import { map, distinctUntilChanged } from 'rxjs/operators';
+import { AppState } from './stores/stores.module';
+import { SetThemeAction } from './stores/settings/settings.module';
 
 @Component({
   selector: 'app-root',
@@ -15,5 +16,8 @@ export class AppComponent {
   constructor(public store: Store<AppState>) {
     this.settingsAppTheme = this.store.select(state => state.Settings).pipe(map(res => res.theme), distinctUntilChanged());
   }
-  title = 'app';
+
+  setTheme(themeName: string) {
+    this.store.dispatch(new SetThemeAction(themeName));
+  }
 }

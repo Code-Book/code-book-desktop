@@ -1,3 +1,20 @@
 <div class="main-container" [ngClass]="settingsAppTheme | async">
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <span class="equal-spacer"></span>
+            <span>CodeBook</span>
+            <span class="equal-spacer"></span>
 
+            <button mat-icon-button color="accent" [matMenuTriggerFor]="theme_menu">
+                <mat-icon>color_lens</mat-icon>
+            </button>
+
+
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-menu #theme_menu="matMenu">
+        <button mat-menu-item (click)="setTheme('dark-theme')">Dark Theme</button>
+        <button mat-menu-item (click)="setTheme('light-theme')">Light Theme</button>
+    </mat-menu>
 </div>
