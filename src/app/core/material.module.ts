@@ -14,4 +14,4 @@ import { MatButtonModule, MatCheckboxModule } from '@angular/material';
         MatCheckboxModule
     ]
 })
-export class MaterialModule { }
+export class AppMaterialModule { }

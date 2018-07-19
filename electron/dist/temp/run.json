@@ -1,0 +1,65 @@
+{
+    "languages": [
+        "Javascript",
+        "Typescript"
+    ],
+    "frameworks": [
+        "Angular 6",
+        "NGRX",
+        "RXJS"
+    ],
+    "tags": [
+        "NGRX",
+        "Angular",
+        "ng",
+        "RXJS",
+        "Redux",
+        "Effects"
+    ],
+    "name": "NGRX + RXJS 6 : Feature Module",
+    "description": "Generate feature code with RXJS 6 for NGRX",
+    "parameters": [
+        {
+            "type": "input",
+            "name": "name",
+            "message": "Enter Feature Name"
+        },
+        {
+            "type": "input",
+            "name": "dirPath",
+            "message": "Directory Path : "
+        }
+    ],
+    "actions": [
+        {
+            "type": "add",
+            "path": "{{baseDir dirPath}}/{{dashCase name}}.actions.ts",
+            "templateFile": "./templates/ngrx-rxjs6/_actions.ts"
+        },
+        {
+            "type": "add",
+            "path": "{{baseDir dirPath}}/{{dashCase name}}.reducer.ts",
+            "templateFile": "./templates/ngrx-rxjs6/_reducer.ts"
+        },
+        {
+            "type": "add",
+            "path": "{{baseDir dirPath}}/{{dashCase name}}.effects.ts",
+            "templateFile": "./templates/ngrx-rxjs6/_effect.ts"
+        },
+        {
+            "type": "add",
+            "path": "{{baseDir dirPath}}/{{dashCase name}}.state.ts",
+            "templateFile": "./templates/ngrx-rxjs6/_state.ts"
+        },
+        {
+            "type": "add",
+            "path": "{{baseDir dirPath}}/{{dashCase name}}.service.ts",
+            "templateFile": "./templates/ngrx-rxjs6/_service.ts"
+        },
+        {
+            "type": "add",
+            "path": "{{baseDir dirPath}}/{{dashCase name}}.module.ts",
+            "templateFile": "./templates/ngrx-rxjs6/_module.ts"
+        }
+    ]
+}

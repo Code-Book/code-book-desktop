@@ -8,8 +8,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "version:update": "npm version $VERSION && cd ./electron && npm version $VERSION",
-    "start": "ng serve & npm run electron:start dev static",
-    "start:live": "ng serve --no-open & npm run electron:start dev live",
+    "start": "ng serve --no-open & npm run electron:start dev live",
+    "start:static": "npm run electron:start dev",
     "electron:start": "cd ./electron && npm run start"
   },
   "private": true,
@@ -25,6 +25,10 @@
     "@angular/platform-browser": "^6.0.2",
     "@angular/platform-browser-dynamic": "^6.0.2",
     "@angular/router": "^6.0.2",
+    "@ngrx/effects": "^6.0.1",
+    "@ngrx/router-store": "^6.0.1",
+    "@ngrx/store": "^6.0.1",
+    "@ngrx/store-devtools": "^6.0.1",
     "core-js": "^2.5.4",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"

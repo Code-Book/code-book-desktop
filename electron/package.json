@@ -16,6 +16,8 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "fs-extra": "^7.0.0",
+    "plop": "^2.0.0",
     "request": "^2.87.0",
     "request-promise": "^4.2.2"
   },
@@ -23,6 +25,7 @@
     "@types/es6-promise": "^3.3.0",
     "@types/express": "^4.16.0",
     "@types/request-promise": "^4.1.42",
+    "copyfiles": "^2.0.0",
     "electron": "^2.0.5",
     "electron-builder": "^20.22.0",
     "tslint": "^5.11.0",

@@ -1,0 +1,10 @@
+@import './platelets';
+
+$dark-primary: mat-palette($md-white);
+$dark-accent:  mat-palette($md-black);
+$dark-warn:    mat-palette($md-red);
+$dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+.dark-theme {
+  @include angular-material-theme($dark-theme);
+}
