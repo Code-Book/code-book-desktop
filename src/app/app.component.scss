@@ -3,9 +3,18 @@
 }
 
 .dark-theme{
-    // background-color: black;
+    router-outlet{
+        background-color: black;
+    }
 }
 
 .light-theme{
-    // background-color: white;
+    router-outlet{
+        background-color: white;
+    }
+}
+
+.main-toolbar{
+    -webkit-app-region: drag;
+    padding-top: 4px;
 }

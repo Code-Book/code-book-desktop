@@ -40,9 +40,14 @@ app.on('activate', () => {
 function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
-        width: 1366,
-        height: 768,
-        title: "CodeBook"
+        width: 420,
+        height: 420,
+        title: "CodeBook",
+        frame: false,
+        titleBarStyle: 'hidden',
+        webPreferences: {
+            devTools: true,
+        }
     })
 
     if (ArgsHelper.isDevMode() && ArgsHelper.runFromLiveServer()) {

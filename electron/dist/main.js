@@ -32,9 +32,14 @@ electron_1.app.on('activate', function () {
 function createWindow() {
     // Create the browser window.
     mainWindow = new electron_1.BrowserWindow({
-        width: 1366,
-        height: 768,
-        title: "CodeBook"
+        width: 420,
+        height: 420,
+        title: "CodeBook",
+        frame: false,
+        titleBarStyle: 'hidden',
+        webPreferences: {
+            devTools: true
+        }
     });
     if (args_helper_1.ArgsHelper.isDevMode() && args_helper_1.ArgsHelper.runFromLiveServer()) {
         console.log("RUNNING IN DEV MODE");
