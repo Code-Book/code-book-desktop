@@ -15,7 +15,6 @@ export const SET_THEME = '[Settings] SET_THEME';
 export class LoadInitialSettingSAction implements Action {
   readonly type = LOAD_INITIAL_SETTINGS;
 }
-
 export class LoadInitialSettingSuccessAction implements Action {
   readonly type = LOAD_INITIAL_SETTINGS_SUCCESS;
   constructor(public payload: any) { }

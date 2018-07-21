@@ -7,17 +7,19 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class SettingsStorageHook {
+    private STORAGE_NAME = 'settings';
+
     constructor(private store: Store<any>, protected localStorage: LocalStorage) {
         this.store.select(state => state.Settings).pipe(
             filter((res: SettingsState) => res.settingChanged),
             map(res => res.settings),
-            switchMap(res => this.localStorage.setItem('settings', res))
+            switchMap(res => this.localStorage.setItem(this.STORAGE_NAME, res))
         ).subscribe(res => {
-            console.log(res);
+            // Do nothing
         });
     }
 
     getSettings(): Observable<any> {
-        return this.localStorage.getItem('settings');
+        return this.localStorage.getItem(this.STORAGE_NAME);
     }
 }
