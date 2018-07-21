@@ -14,7 +14,7 @@ export class AppComponent {
   settingsAppTheme;
 
   constructor(public store: Store<AppState>) {
-    this.settingsAppTheme = this.store.select(state => state.Settings).pipe(map(res => res.theme), distinctUntilChanged());
+    this.settingsAppTheme = this.store.select(state => state.Settings).pipe(map(res => res.settings.theme), distinctUntilChanged());
   }
 
   setTheme(themeName: string) {

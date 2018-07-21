@@ -1,25 +1,33 @@
-import { switchMap, catchError, map } from 'rxjs/operators';
+import { map, switchMap, catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { SettingsService } from './settings.service';
 import * as settings from './settings.actions';
 import { of } from 'rxjs';
+import { SettingsStorageHook } from './settings.storage.hook';
+
 
 @Injectable()
 export class SettingsEffects {
 
-  // @Effect({dispatch: false} get$ = this.actions$
-  //   .pipe(
-  //     ofType(settings.SET_THEME),
-  //     switchMap((payload) => this.settingsService.get()
-  //       .pipe(
-  //         map((res) => ({ type: settings.GET_SUCCESS, payload: res.json() })),
-  //         catchError(() => of({ type: settings.GET_ERROR }))))
-  //   );
+  @Effect() loadInitialConfig$ = this.actions$
+    .pipe(
+      ofType(settings.LOAD_INITIAL_SETTINGS),
+      map((action: settings.SetThemeAction) => action.payload),
+      switchMap(payload => this.settingsStorageHook.getSettings()
+        .pipe(map(res => {
+          return ({ type: settings.LOAD_INITIAL_SETTINGS_SUCCESS, payload: res });
+        }))
+      ),
+      catchError(() => {
+        return of({ type: settings.LOAD_INITIAL_SETTINGS_SUCCESS, payload: null });
+      })
+    );
 
   constructor(
-    private settingsService: SettingsService,
+    protected settingsStorageHook: SettingsStorageHook,
     private actions$: Actions
-  ) { }
+  ) {
+
+  }
 
 }

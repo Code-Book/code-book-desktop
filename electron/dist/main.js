@@ -32,8 +32,8 @@ electron_1.app.on('activate', function () {
 function createWindow() {
     // Create the browser window.
     mainWindow = new electron_1.BrowserWindow({
-        width: 420,
-        height: 420,
+        width: 800,
+        height: 600,
         title: "CodeBook",
         frame: false,
         titleBarStyle: 'hidden',

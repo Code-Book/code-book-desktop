@@ -1,7 +1,15 @@
 export interface SettingsState {
-    theme: string;
+    isLoading: boolean;
+    settingChanged: boolean;
+    settings: {
+        theme: string
+    };
 }
 
 export const initialSettingsState: SettingsState = {
-    theme: 'dark-theme',
+    isLoading: false,
+    settingChanged: false,
+    settings: {
+        theme: 'dark-theme',
+    }
 };

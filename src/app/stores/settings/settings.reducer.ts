@@ -10,10 +10,30 @@ import { SettingsState, initialSettingsState } from './settings.state';
 
 export function settingsReducer(state = initialSettingsState, action: settings.Actions): SettingsState {
   switch (action.type) {
+    case settings.LOAD_INITIAL_SETTINGS: {
+      return {
+        ...state,
+        isLoading: true
+      };
+    }
+
+    case settings.LOAD_INITIAL_SETTINGS_SUCCESS: {
+      const newSettings = action.payload || state.settings;
+      return {
+        ...state,
+        isLoading: false,
+        settings: newSettings
+      };
+    }
+
     case settings.SET_THEME: {
       return {
         ...state,
-        theme: action.payload
+        settingChanged: true,
+        settings: {
+          ...state.settings,
+          theme: action.payload
+        }
       };
     }
 
