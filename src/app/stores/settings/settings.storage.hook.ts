@@ -15,6 +15,8 @@ export class SettingsStorageHook {
             map(res => res.settings),
             switchMap(res => this.localStorage.setItem(this.STORAGE_NAME, res))
         ).subscribe(res => {
+            console.log(res);
+
             // Do nothing
         });
     }

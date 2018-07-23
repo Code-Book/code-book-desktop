@@ -7,6 +7,7 @@ import * as path from "path";
 import * as url from 'url';
 import { ArgsHelper } from './helpers/args.helper';
 import { MenuProvider } from './menu.provider';
+import { TemplateListService } from './services/template.list.server';
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScrsipt object is garbage collected.
@@ -71,4 +72,6 @@ function init() {
     const menuTemplate = new MenuProvider(mainWindow);
     const menu = Menu.buildFromTemplate(menuTemplate.getMenu());
     Menu.setApplicationMenu(menu);
+
+    new TemplateListService();
 }

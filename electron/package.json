@@ -15,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/fs-extra": "^5.0.4",
     "body-parser": "^1.18.3",
     "fs-extra": "^7.0.0",
     "plop": "^2.0.0",

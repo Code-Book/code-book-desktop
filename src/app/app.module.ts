@@ -6,6 +6,7 @@ import { AppMaterialModule } from './core/index';
 import { CommonModule } from '@angular/common';
 import { AppStoresModule } from './stores/stores.module';
 import { AppRoutingModule } from './routing.module';
+import { NgxElectronModule } from 'ngx-electron';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AppRoutingModule } from './routing.module';
     CommonModule,
     AppMaterialModule,
     AppRoutingModule,
-    AppStoresModule
+    AppStoresModule,
+    NgxElectronModule
   ],
   bootstrap: [AppComponent]
 })

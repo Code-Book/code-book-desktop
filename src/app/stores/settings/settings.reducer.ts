@@ -1,3 +1,4 @@
+import { filter } from 'rxjs/operators';
 import * as settings from './settings.actions';
 import { SettingsState, initialSettingsState } from './settings.state';
 
@@ -33,6 +34,28 @@ export function settingsReducer(state = initialSettingsState, action: settings.A
         settings: {
           ...state.settings,
           theme: action.payload
+        }
+      };
+    }
+
+    case settings.ADD_TEMPLATE_PATH: {
+      return {
+        ...state,
+        settingChanged: true,
+        settings: {
+          ...state.settings,
+          templatePaths: Array.from(new Set([...(state.settings.templatePaths || []), action.payload]))
+        }
+      };
+    }
+
+    case settings.REMOVE_TEMPLATE_PATH: {
+      return {
+        ...state,
+        settingChanged: true,
+        settings: {
+          ...state.settings,
+          templatePaths: [...(state.settings.templatePaths || []).filter(res => res !== action.payload)]
         }
       };
     }

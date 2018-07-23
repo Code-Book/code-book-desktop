@@ -2,7 +2,8 @@ export interface SettingsState {
     isLoading: boolean;
     settingChanged: boolean;
     settings: {
-        theme: string
+        theme: string,
+        templatePaths?: string[]
     };
 }
 
