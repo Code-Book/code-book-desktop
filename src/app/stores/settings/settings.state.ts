@@ -3,7 +3,9 @@ export interface SettingsState {
     settingChanged: boolean;
     settings: {
         theme: string,
-        templatePaths?: string[]
+        templatePaths: {
+            filesystem: string[]
+        }
     };
 }
 
@@ -12,5 +14,8 @@ export const initialSettingsState: SettingsState = {
     settingChanged: false,
     settings: {
         theme: 'dark-theme',
+        templatePaths: {
+            filesystem: []
+        }
     }
 };

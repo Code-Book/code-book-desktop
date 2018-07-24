@@ -1,9 +1,8 @@
-import { AddTemplatePathAction, RemoveTemplatePathAction } from './stores/settings/settings.actions';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map, distinctUntilChanged, filter, tap, pairwise } from 'rxjs/operators';
 import { AppState } from './stores/stores.module';
-import { SetThemeAction, LoadInitialSettingSAction } from './stores/settings/settings.module';
+import { SetThemeAction, LoadInitialSettingSAction, AddFileSystemTemplatePathAction } from './stores/settings/settings.module';
 import { OverlayContainer } from '@angular/cdk/overlay';
 
 @Component({
@@ -39,7 +38,8 @@ export class AppComponent implements OnInit {
   }
 
   setTheme(themeName: string) {
-    this.store.dispatch(new AddTemplatePathAction('/Users/sanchit.gupta/Documents/Personal/code-book/electron/sampleTemplates/'));
+    // TODO
+    this.store.dispatch(new AddFileSystemTemplatePathAction('/Users/sanchit.gupta/Desktop/sampleTemplates 2/'));
     this.store.dispatch(new SetThemeAction(themeName));
   }
 }

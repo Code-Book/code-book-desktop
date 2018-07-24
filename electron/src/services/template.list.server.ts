@@ -1,13 +1,12 @@
-import { Constants } from './../../../common/Constants';
 import * as fse from "fs-extra";
 import { ipcMain } from "electron";
 
 export class TemplateListService {
 
     constructor() {
-        ipcMain.on(Constants.TEMPLATE_LIST_REQUEST, async (event: any, arg: any) => {
+        ipcMain.on('TEMPLATE_LIST_REQUEST', async (event: any, arg: any) => {
             event.sender.send(
-                Constants.TEMPLATE_LIST_RESPONSE + `${arg.uuid ? '-' + arg.uuid : ''}`,
+                'TEMPLATE_LIST_RESPONSE' + `${arg.uuid ? '-' + arg.uuid : ''}`,
                 await this.getListOfTemplates(arg.path)
             )
         });

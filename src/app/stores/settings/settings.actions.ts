@@ -10,8 +10,9 @@ export const LOAD_INITIAL_SETTINGS = '[Settings] LOAD_INITIAL_SETTINGS';
 export const LOAD_INITIAL_SETTINGS_SUCCESS = '[Settings] LOAD_INITIAL_SETTINGS_SUCCESS';
 
 export const SET_THEME = '[Settings] SET_THEME';
-export const ADD_TEMPLATE_PATH = '[Settings] ADD_TEMPLATE_PATH';
-export const REMOVE_TEMPLATE_PATH = '[Settings] REMOVE_TEMPLATE_PATH';
+
+export const ADD_FILE_SYSTEM_TEMPLATE_PATH = '[Settings] ADD_FILE_SYSTEM_TEMPLATE_PATH';
+export const REMOVE_FILE_SYSTEM_TEMPLATE_PATH = '[Settings] REMOVE_FILE_SYSTEM_TEMPLATE_PATH';
 
 // Create actions with or without payload
 export class LoadInitialSettingSAction implements Action {
@@ -27,14 +28,14 @@ export class SetThemeAction implements Action {
   constructor(public payload: string) { }
 }
 
-export class AddTemplatePathAction implements Action {
-  readonly type = ADD_TEMPLATE_PATH;
+export class AddFileSystemTemplatePathAction implements Action {
+  readonly type = ADD_FILE_SYSTEM_TEMPLATE_PATH;
 
   constructor(public payload: string) { }
 }
 
-export class RemoveTemplatePathAction implements Action {
-  readonly type = REMOVE_TEMPLATE_PATH;
+export class RemoveFileSystemTemplatePathAction implements Action {
+  readonly type = REMOVE_FILE_SYSTEM_TEMPLATE_PATH;
 
   constructor(public payload: string) { }
 }
@@ -44,5 +45,5 @@ export type Actions =
   | LoadInitialSettingSAction
   | LoadInitialSettingSuccessAction
   | SetThemeAction
-  | AddTemplatePathAction
-  | RemoveTemplatePathAction;
+  | AddFileSystemTemplatePathAction
+  | RemoveFileSystemTemplatePathAction;
