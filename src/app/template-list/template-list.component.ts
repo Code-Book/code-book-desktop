@@ -28,22 +28,22 @@ export class TemplateListComponent implements OnInit {
         observeOnZone(this.zone),
         filter(res => !res.isLoading),
         map(res => res.settings.templatePaths),
-    ).subscribe(templatePaths => {
-      templatePaths.filesystem.forEach(templatePath => {
-        if (this.electronService.isElectronApp) {
-          const requestID = Math.floor(Math.random() * 100);
-          this.electronService.ipcRenderer.on('TEMPLATE_LIST_RESPONSE' + `-${requestID}`, (event, arg) => {
-            this.zone.run(() => {
-              this.templates.push(...arg);
+      ).subscribe(templatePaths => {
+        templatePaths.filesystem.forEach(templatePath => {
+          if (this.electronService.isElectronApp) {
+            const requestID = Math.floor(Math.random() * 100);
+            this.electronService.ipcRenderer.on('TEMPLATE_LIST_RESPONSE' + `-${requestID}`, (event, arg) => {
+              this.zone.run(() => {
+                this.templates.push(...arg);
+              });
             });
-          });
-          this.electronService.ipcRenderer.send('TEMPLATE_LIST_REQUEST', {
-            uuid: requestID,
-            path: templatePath
-          });
-        }
+            this.electronService.ipcRenderer.send('TEMPLATE_LIST_REQUEST', {
+              uuid: requestID,
+              path: templatePath
+            });
+          }
+        });
       });
-    });
   }
 
 }
