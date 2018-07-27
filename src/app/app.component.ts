@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map, distinctUntilChanged, filter, tap, pairwise } from 'rxjs/operators';
-import { AppState } from './stores/stores.module';
-import { SetThemeAction, LoadInitialSettingSAction, AddFileSystemTemplatePathAction } from './stores/settings/settings.module';
+import { SetThemeAction, LoadInitialSettingSAction, AddFileSystemTemplatePathAction } from './+stores/settings/settings.module';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { AppState } from './app.state';
 
 @Component({
   selector: 'app-root',

@@ -4,9 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppMaterialModule } from './core/index';
 import { CommonModule } from '@angular/common';
-import { AppStoresModule } from './stores/stores.module';
-import { AppRoutingModule } from './routing.module';
+import { AppStoresModule } from './+stores/stores.module';
 import { NgxElectronModule } from 'ngx-electron';
+import { AppRoutingModule } from './components/routing.module';
 
 @NgModule({
   declarations: [

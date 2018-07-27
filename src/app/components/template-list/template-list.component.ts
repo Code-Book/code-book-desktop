@@ -1,10 +1,10 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { ElectronService } from 'ngx-electron';
 import { Store } from '@ngrx/store';
-import { AppState } from '../stores/stores.module';
-import { filter, map, delay } from 'rxjs/operators';
-import observeOnZone from '../common/observeOnZone';
-import { Subject, ReplaySubject } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
+import observeOnZone from '../../common/observeOnZone';
+import { MatDialog } from '@angular/material';
+import { AppState } from '../../app.state';
 
 @Component({
   selector: 'app-template-list',
@@ -12,12 +12,12 @@ import { Subject, ReplaySubject } from 'rxjs';
   styleUrls: ['./template-list.component.scss']
 })
 export class TemplateListComponent implements OnInit {
-
   templates: Array<any>;
 
   constructor(
     private electronService: ElectronService,
     private store: Store<AppState>,
+    public dialog: MatDialog,
     private zone: NgZone) {
     this.templates = [];
   }
@@ -44,6 +44,13 @@ export class TemplateListComponent implements OnInit {
           }
         });
       });
+  }
+
+  generateTap() {
+    // const dialogRef = this.dialog.open(TemplateGenerateComponent, {
+    //   width: '100vw',
+    //   height: '80hh'
+    // });
   }
 
 }
