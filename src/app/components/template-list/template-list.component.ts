@@ -3,7 +3,6 @@ import { ElectronService } from 'ngx-electron';
 import { Store } from '@ngrx/store';
 import { filter, map } from 'rxjs/operators';
 import observeOnZone from '../../common/observeOnZone';
-import { MatDialog } from '@angular/material';
 import { AppState } from '../../app.state';
 
 @Component({
@@ -17,7 +16,6 @@ export class TemplateListComponent implements OnInit {
   constructor(
     private electronService: ElectronService,
     private store: Store<AppState>,
-    public dialog: MatDialog,
     private zone: NgZone) {
     this.templates = [];
   }
@@ -44,13 +42,6 @@ export class TemplateListComponent implements OnInit {
           }
         });
       });
-  }
-
-  generateTap() {
-    // const dialogRef = this.dialog.open(TemplateGenerateComponent, {
-    //   width: '100vw',
-    //   height: '80hh'
-    // });
   }
 
 }

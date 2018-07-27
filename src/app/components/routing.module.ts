@@ -6,9 +6,12 @@ import { AppMaterialModule } from '../core';
 import { BrowserModule } from '@angular/platform-browser';
 import { GenerateCodeComponent } from './generate-code/generate-code.component';
 import { SettingsComponent } from './settings/settings.component';
+import { AboutComponent } from './about/about.component';
+import { TemplateItemComponent } from './template-item/template-item.component';
 
 const routes: Routes = [
     { path: 'settings', component: SettingsComponent },
+    { path: 'about', component: AboutComponent },
     { path: '', component: TemplateListComponent },
     { path: 'generate-code', component: GenerateCodeComponent }
 ];
@@ -21,7 +24,12 @@ const routes: Routes = [
         RouterModule.forRoot(routes)
     ],
     exports: [RouterModule],
-    declarations: [TemplateListComponent, GenerateCodeComponent, SettingsComponent]
+    declarations: [
+        TemplateListComponent,
+        GenerateCodeComponent,
+        SettingsComponent,
+        AboutComponent,
+        TemplateItemComponent]
 })
 export class AppRoutingModule {
 }
