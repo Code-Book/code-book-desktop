@@ -1,3 +1,16 @@
-<p>
-  settings works!
-</p>
+<div class="primaryColorBG">
+  <form [formGroup]="settings">
+    <mat-form-field appearance="outline">
+      <mat-label>Change Theme</mat-label>
+      <mat-select formControlName="theme" (selectionChange)="themeSelected($event.value)">
+        <mat-option *ngFor="let item of themes" [value]="item.value">{{item.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+
+
+  <div class="setting-footer" fxLayout="row" fxLayoutAlign="space-evenly center">
+    <button mat-flat-button color="accent" [routerLink]="['']">Back</button>
+    <button mat-flat-button color="accent" [routerLink]="['']">Save</button>
+  </div>
+</div>

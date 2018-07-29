@@ -1,0 +1,73 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+@mixin theme-color-grabber($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+
+    $mainToolBarHeight : 56px;
+    $mainToolBarTopPadding : 4px;
+
+    .main-toolbar{
+        padding-top: $mainToolBarTopPadding;
+        height: $mainToolBarHeight;
+        position: sticky;
+        position: -webkit-sticky; /* For macOS/iOS Safari */
+        top: 0; /* Sets the sticky toolbar to be on top */
+        z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+    }
+
+    .primaryColorBG {
+      background-color: mat-color($primary);
+      height: calc(100vh - #{$mainToolBarHeight} - #{$mainToolBarTopPadding});
+      padding: 8px;
+    }
+
+    .accentColorBG {
+      background-color: mat-color($accent);
+      height: calc(100vh - 60px);
+      padding: 8px;
+    }
+    .warnColorBG {
+      background-color: mat-color($warn);
+      height: calc(100vh - 60px);
+      padding: 8px;
+    }
+
+    .primaryColorMatCard{
+        $is-dark-theme: map-get($theme, is-dark);
+        background: if($is-dark-theme, map-get($mat-grey, 50), map-get($mat-grey, 200))  !important;
+        color: $dark-primary-text !important;
+    }
+  }
+
+.light-theme {
+    $custom-primary: mat-palette($mat-grey, 50);
+    $custom-accent: mat-palette($mat-blue-grey, 800);
+
+    $custom-theme: mat-light-theme($custom-primary, $custom-accent);
+
+    @include theme-color-grabber($custom-theme);
+    @include angular-material-theme($custom-theme);
+}
+
+.dark-theme {
+    $custom-primary: mat-palette($mat-grey, 900);
+    $custom-accent: mat-palette($mat-blue-grey, 600);
+
+    $custom-theme: mat-dark-theme($custom-primary, $custom-accent);
+
+    @include theme-color-grabber($custom-theme);
+    @include angular-material-theme($custom-theme);
+}
+
+.red-theme {
+    $custom-primary: mat-palette($mat-red, 900);
+    $custom-accent: mat-palette($mat-blue-grey, 800);
+
+    $custom-theme: mat-dark-theme($custom-primary, $custom-accent);
+
+    @include theme-color-grabber($custom-theme);
+    @include angular-material-theme($custom-theme);
+}

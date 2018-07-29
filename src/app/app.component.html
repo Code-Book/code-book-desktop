@@ -4,20 +4,23 @@
             <span>CodeBook</span>
             <span class="equal-spacer"></span>
 
-            <button mat-icon-button color="accent" disabled>
-                <mat-icon>favorite</mat-icon>
-            </button>
-            <button mat-icon-button color="accent" [matMenuTriggerFor]="theme_menu">
-                <mat-icon>colorize</mat-icon>
+            <button mat-mini-fab color="accent" [matMenuTriggerFor]="settingMenu">
+                <mat-icon>settings</mat-icon>
             </button>
 
 
         </mat-toolbar-row>
     </mat-toolbar>
 
-    <mat-menu #theme_menu="matMenu">
-        <button mat-menu-item (click)="setTheme('dark-theme')">Dark Theme</button>
-        <button mat-menu-item (click)="setTheme('light-theme')">Light Theme</button>
+    <mat-menu #settingMenu="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="themeMenu">Theme</button>
+        <button mat-menu-item [routerLink]="['settings']">More Settings</button>
+    </mat-menu>
+
+    <mat-menu #themeMenu="matMenu">
+        <button mat-menu-item (click)="setTheme('dark-theme')">Midnight</button>
+        <button mat-menu-item (click)="setTheme('light-theme')">White Light</button>
+        <button mat-menu-item (click)="setTheme('red-theme')">Ferrari</button>
     </mat-menu>
 
     <router-outlet></router-outlet>
