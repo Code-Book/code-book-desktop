@@ -1,16 +1,23 @@
 <div class="primaryColorBG">
   <form [formGroup]="settings">
-    <mat-form-field appearance="outline">
+
+    <mat-form-field appearance="outline" color="accent">
       <mat-label>Change Theme</mat-label>
       <mat-select formControlName="theme" (selectionChange)="themeSelected($event.value)">
         <mat-option *ngFor="let item of themes" [value]="item.value">{{item.name}}</mat-option>
       </mat-select>
     </mat-form-field>
+
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Set File System Template Location</mat-label>
+      <input matInput formControlName="fileSystemTemplatePath">
+    </mat-form-field>
+
   </form>
 
 
   <div class="setting-footer" fxLayout="row" fxLayoutAlign="space-evenly center">
     <button mat-flat-button color="accent" [routerLink]="['']">Back</button>
-    <button mat-flat-button color="accent" [routerLink]="['']">Save</button>
+    <button mat-flat-button color="accent" [routerLink]="['']" (click)="onSave()">Save</button>
   </div>
 </div>

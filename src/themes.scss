@@ -40,6 +40,12 @@
         background: if($is-dark-theme, map-get($mat-grey, 50), map-get($mat-grey, 200))  !important;
         color: $dark-primary-text !important;
     }
+
+    .mat-input-element {
+        $is-dark-theme: map-get($theme, is-dark);
+        color: if($is-dark-theme, $light-primary-text, $dark-primary-text)  !important;
+        caret-color: if($is-dark-theme, $light-primary-text, $dark-primary-text)  !important;
+      }
   }
 
 .light-theme {

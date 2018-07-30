@@ -27,11 +27,13 @@ export class SettingsComponent implements OnInit {
     }
   ];
 
+
   settings: FormGroup;
 
   constructor(private store: Store<AppState>, fb: FormBuilder) {
     this.settings = fb.group({
       theme: [''],
+      fileSystemTemplatePath: ['']
     });
   }
 
@@ -40,7 +42,8 @@ export class SettingsComponent implements OnInit {
       filter(res => !res.isLoading), map(res => res.settings)
     ).subscribe(res => {
       this.settings.patchValue({
-        theme: res.theme
+        theme: res.theme,
+        fileSystemTemplatePath: res.templatePaths && res.templatePaths.filesystem ? res.templatePaths.filesystem[0] : ''
       });
     });
 
@@ -48,6 +51,11 @@ export class SettingsComponent implements OnInit {
 
   themeSelected(themeValue) {
     this.store.dispatch(new SetThemeAction(themeValue));
+  }
+
+  onSave() {
+    console.log('I want to save');
+
   }
 
 
