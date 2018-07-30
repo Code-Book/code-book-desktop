@@ -45,8 +45,6 @@ export class AppComponent implements OnInit {
   }
 
   setTheme(themeName: string) {
-    // TODO
-    this.store.dispatch(new AddFileSystemTemplatePathAction('/Users/sanchit.gupta/Desktop/sampleTemplates 2/'));
     this.store.dispatch(new SetThemeAction(themeName));
   }
 

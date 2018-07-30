@@ -11,13 +11,14 @@
     <mat-form-field appearance="outline" color="accent">
       <mat-label>Set File System Template Location</mat-label>
       <input matInput formControlName="fileSystemTemplatePath">
+      <button mat-button (click)="saveFileSystemTemplatePath()" class="inline-save-button" *ngIf="settings.get('fileSystemTemplatePath').value && savedTemplatePath!==settings.get('fileSystemTemplatePath').value"
+        matSuffix mat-icon-button aria-label="Save">
+        <mat-icon>check</mat-icon>
+      </button>
     </mat-form-field>
-
   </form>
-
 
   <div class="setting-footer" fxLayout="row" fxLayoutAlign="space-evenly center">
     <button mat-flat-button color="accent" [routerLink]="['']">Back</button>
-    <button mat-flat-button color="accent" [routerLink]="['']" (click)="onSave()">Save</button>
   </div>
 </div>

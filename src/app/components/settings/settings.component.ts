@@ -1,7 +1,7 @@
 import { filter, map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
-import { SetThemeAction } from '../../+stores/settings/settings.module';
+import { SetThemeAction, AddFileSystemTemplatePathAction } from '../../+stores/settings/settings.module';
 import { AppState } from '../../app.state';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
@@ -27,6 +27,7 @@ export class SettingsComponent implements OnInit {
     }
   ];
 
+  savedTemplatePath;
 
   settings: FormGroup;
 
@@ -41,6 +42,7 @@ export class SettingsComponent implements OnInit {
     this.store.select(state => state.Settings).pipe(
       filter(res => !res.isLoading), map(res => res.settings)
     ).subscribe(res => {
+      this.savedTemplatePath = res.templatePaths && res.templatePaths.filesystem ? res.templatePaths.filesystem[0] : '';
       this.settings.patchValue({
         theme: res.theme,
         fileSystemTemplatePath: res.templatePaths && res.templatePaths.filesystem ? res.templatePaths.filesystem[0] : ''
@@ -53,9 +55,9 @@ export class SettingsComponent implements OnInit {
     this.store.dispatch(new SetThemeAction(themeValue));
   }
 
-  onSave() {
-    console.log('I want to save');
 
+  saveFileSystemTemplatePath() {
+    this.store.dispatch(new AddFileSystemTemplatePathAction(this.settings.get('fileSystemTemplatePath').value));
   }
 
 
