@@ -10,11 +10,21 @@ export class GenerateCodeComponent implements OnInit {
 
   template;
 
+  parameterModel = {};
+
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.template = JSON.parse(atob(this.route.snapshot.paramMap.get('template')));
     console.log(this.template);
+
+    this.template.parameters.forEach(element => {
+      this.parameterModel[element.name] = '';
+    });
+  }
+
+  onGenerate() {
+    console.log(this.parameterModel);
   }
 
 }

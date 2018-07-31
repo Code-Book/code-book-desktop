@@ -1,11 +1,25 @@
-<div class="primaryColorBG">
-  <mat-card-header class="generate-code-header">
+<mat-card>
+
+  <mat-card-header>
     <mat-card-title class="text-on-primary-bg">{{template?.meta?.name}}</mat-card-title>
     <mat-card-subtitle>{{template?.meta?.description}}</mat-card-subtitle>
   </mat-card-header>
 
-  <div class="generate-code-footer" fxLayout="row" fxLayoutAlign="space-evenly center">
-    <button mat-flat-button color="accent" [routerLink]="['']">Cancel</button>
-    <button mat-flat-button color="accent">Generate</button>
-  </div>
+  <mat-card-content>
+
+    <mat-list fxLayout="column" fxLayoutAlign="space-between start">
+      <mat-form-field style="margin-top:8px;" *ngFor="let item of template?.parameters" appearance="outline" color="accent">
+        <mat-label>{{item.name}}</mat-label>
+        <input matInput [(ngModel)]="parameterModel[item.name]">
+        <mat-hint>{{item.message}}</mat-hint>
+      </mat-form-field>
+    </mat-list>
+
+  </mat-card-content>
+
+</mat-card>
+
+<div class="generate-code-footer" fxLayout="row" fxLayoutAlign="space-evenly center">
+  <button mat-flat-button color="accent" [routerLink]="['']">Cancel</button>
+  <button mat-flat-button color="accent" (click)="onGenerate()">Generate</button>
 </div>

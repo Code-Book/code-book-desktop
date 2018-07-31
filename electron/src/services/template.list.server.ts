@@ -32,8 +32,8 @@ export class TemplateListService {
         const templateDetails: any = [];
         templates.forEach(item => {
             templateDetails.push({
+                ...require(path + item + '/template.json'),
                 path: path + item,
-                meta: require(path + item + '/template.json').meta
             })
         })
 

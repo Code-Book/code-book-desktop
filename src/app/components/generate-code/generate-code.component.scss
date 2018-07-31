@@ -4,3 +4,16 @@
     bottom: 16px;
     width: 100%;
 }
+
+::ng-deep .mat-card-header-text{
+    .mat-card-title{
+        font-size: large;
+    }
+    margin: auto !important;
+}
+
+mat-card{
+    margin-left: 24px;
+    margin-right: 24px;
+    margin-bottom: 65px;
+}

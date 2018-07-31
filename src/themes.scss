@@ -18,21 +18,23 @@
         z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
     }
 
+    .colorBG{
+        min-height: calc(100vh - (#{$mainToolBarHeight} - #{$mainToolBarTopPadding}));
+        padding: 8px;
+    }
+
     .primaryColorBG {
+        @extend .colorBG;
       background-color: mat-color($primary);
-      height: calc(100vh - #{$mainToolBarHeight} - #{$mainToolBarTopPadding});
-      padding: 8px;
     }
 
     .accentColorBG {
+        @extend .colorBG;
       background-color: mat-color($accent);
-      height: calc(100vh - #{$mainToolBarHeight} - #{$mainToolBarTopPadding});
-      padding: 8px;
     }
     .warnColorBG {
+        @extend .colorBG;
       background-color: mat-color($warn);
-      height: calc(100vh - #{$mainToolBarHeight} - #{$mainToolBarTopPadding});
-      padding: 8px;
     }
 
     .primaryColorMatCard{
@@ -55,7 +57,7 @@
     .generate-code-header{
         position: fixed;
         left: 0;
-        top: calc(#{$mainToolBarHeight} + #{$mainToolBarTopPadding} + 10px);
+        top: calc(#{$mainToolBarHeight} + #{$mainToolBarTopPadding} + 10);
         width: 100%;
     }
 
