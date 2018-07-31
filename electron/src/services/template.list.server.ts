@@ -37,8 +37,6 @@ export class TemplateListService {
             })
         })
 
-        console.log(templateDetails);
-
         return templateDetails;
     }
 

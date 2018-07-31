@@ -15,7 +15,7 @@ const routes: Routes = [
     { path: 'settings', component: SettingsComponent },
     { path: 'about', component: AboutComponent },
     { path: '', component: TemplateListComponent },
-    { path: 'generate-code', component: GenerateCodeComponent }
+    { path: 'generate-code/:template', component: GenerateCodeComponent }
 ];
 
 @NgModule({

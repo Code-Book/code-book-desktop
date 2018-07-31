@@ -1,3 +1,11 @@
-<p>
-  generate-code works!
-</p>
+<div class="primaryColorBG">
+  <mat-card-header>
+    <mat-card-title>{{template?.meta?.name}}</mat-card-title>
+    <mat-card-subtitle>{{template?.meta?.description}}</mat-card-subtitle>
+  </mat-card-header>
+
+  <div class="generate-code-footer" fxLayout="row" fxLayoutAlign="space-evenly center">
+    <button mat-button color="accent" [routerLink]="['']">Cancel</button>
+    <button mat-button color="accent">Generate</button>
+  </div>
+</div>

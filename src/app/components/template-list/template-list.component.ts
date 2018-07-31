@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { ElectronService } from 'ngx-electron';
 import { Store } from '@ngrx/store';
-import { filter, map } from 'rxjs/operators';
+import { filter, map, distinctUntilChanged } from 'rxjs/operators';
 import observeOnZone from '../../common/observeOnZone';
 import { AppState } from '../../app.state';
 
@@ -26,6 +26,7 @@ export class TemplateListComponent implements OnInit {
         observeOnZone(this.zone),
         filter(res => !res.isLoading),
         map(res => res.settings.templatePaths),
+        distinctUntilChanged()
       ).subscribe(templatePaths => {
         templatePaths.filesystem.forEach(templatePath => {
           if (this.electronService.isElectronApp) {
