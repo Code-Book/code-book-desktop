@@ -26,7 +26,7 @@ module.exports = function (plop: any) {
 
     injectHelpers(plop, templatePath, defaultDestination);
 
-    const templateData = require(templatePath + '/template.json')
+    const templateData = JSON.parse(require('fs').readFileSync(templatePath + '/template.json', 'utf8'));
 
     plop.setGenerator(
         templateData.name,

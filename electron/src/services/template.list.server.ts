@@ -32,7 +32,7 @@ export class TemplateListService {
         const templateDetails: any = [];
         templates.forEach(item => {
             templateDetails.push({
-                ...require(path + item + '/template.json'),
+                ...JSON.parse(require('fs').readFileSync(path + item + '/template.json', 'utf8')),
                 path: path + item,
             })
         })
