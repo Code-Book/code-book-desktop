@@ -1,5 +1,5 @@
-import * as fse from "fs-extra";
 import { ipcMain } from "electron";
+import * as nodePlop from 'node-plop';
 
 export class TemplateGenerateService {
 
@@ -12,9 +12,14 @@ export class TemplateGenerateService {
         });
     }
 
-    async generateTemplate(path: string, parameters: string[]): Promise<boolean> {
-        console.log(path);
-        console.log(parameters);
+    async generateTemplate(path: string, parameters: any): Promise<boolean> {
+        process.argv.push(`--templatePath=${path}`);
+        const plop = nodePlop(__dirname + `/plopfile.js`);
+
+        const basicAdd = plop.getGenerator(plop.getGeneratorList()[0].name);
+        basicAdd.runActions(parameters).then((results: any) => {
+            console.log(results);
+        });
 
         return true;
     }

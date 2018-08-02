@@ -43,7 +43,7 @@ export class GenerateCodeComponent implements OnInit {
       this.electronService.ipcRenderer.send('TEMPLATE_GENERATE_REQUEST', {
         uuid: requestID,
         path: this.template.path,
-        parameters: this.buildParamterArray()
+        parameters: this.parameterModel
       });
     }
     console.log(this.parameterModel);
