@@ -31,10 +31,12 @@ export class TemplateListService {
         let templates = await this.getListOfFolders(path);
         const templateDetails: any = [];
         templates.forEach(item => {
-            templateDetails.push({
-                ...JSON.parse(require('fs').readFileSync(path + item + '/template.json', 'utf8')),
-                path: path + item,
-            })
+            if (require('fs').existsSync(path + item + '/template.json')) {
+                templateDetails.push({
+                    ...JSON.parse(require('fs').readFileSync(path + item + '/template.json', 'utf8')),
+                    path: path + item,
+                })
+            }
         })
 
         return templateDetails;
