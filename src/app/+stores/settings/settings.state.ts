@@ -3,6 +3,7 @@ export interface SettingsState {
     settingChanged: boolean;
     settings: {
         theme: string,
+        defaultDestination?: string;
         templatePaths: {
             filesystem: string[]
         }

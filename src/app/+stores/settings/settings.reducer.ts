@@ -38,6 +38,17 @@ export function settingsReducer(state = initialSettingsState, action: settings.A
       };
     }
 
+    case settings.SET_DEFAULT_DESTINATION_PATH: {
+      return {
+        ...state,
+        settingChanged: true,
+        settings: {
+          ...state.settings,
+          defaultDestination: action.payload
+        }
+      };
+    }
+
     case settings.ADD_FILE_SYSTEM_TEMPLATE_PATH: {
       return {
         ...state,

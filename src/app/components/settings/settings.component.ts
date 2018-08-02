@@ -1,7 +1,7 @@
 import { filter, map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
-import { SetThemeAction, AddFileSystemTemplatePathAction } from '../../+stores/settings/settings.module';
+import { SetThemeAction, AddFileSystemTemplatePathAction, SetDefaultDestinationPathAction } from '../../+stores/settings/settings.module';
 import { AppState } from '../../app.state';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
@@ -34,7 +34,8 @@ export class SettingsComponent implements OnInit {
   constructor(private store: Store<AppState>, fb: FormBuilder) {
     this.settings = fb.group({
       theme: [''],
-      fileSystemTemplatePath: ['']
+      fileSystemTemplatePath: [''],
+      defaultDestination: ['']
     });
   }
 
@@ -45,7 +46,8 @@ export class SettingsComponent implements OnInit {
       this.savedTemplatePath = res.templatePaths && res.templatePaths.filesystem ? res.templatePaths.filesystem[0] : '';
       this.settings.patchValue({
         theme: res.theme,
-        fileSystemTemplatePath: res.templatePaths && res.templatePaths.filesystem ? res.templatePaths.filesystem[0] : ''
+        fileSystemTemplatePath: res.templatePaths && res.templatePaths.filesystem ? res.templatePaths.filesystem[0] : '',
+        defaultDestination: res.defaultDestination || ''
       });
     });
 
@@ -60,5 +62,8 @@ export class SettingsComponent implements OnInit {
     this.store.dispatch(new AddFileSystemTemplatePathAction(this.settings.get('fileSystemTemplatePath').value));
   }
 
+  saveDefaultDestination() {
+    this.store.dispatch(new SetDefaultDestinationPathAction(this.settings.get('defaultDestination').value));
+  }
 
 }

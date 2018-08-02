@@ -15,6 +15,15 @@
       <mat-icon>check</mat-icon>
     </button>
   </mat-form-field>
+
+  <mat-form-field appearance="outline" color="accent">
+    <mat-label>Set Default Destination Path for generated files</mat-label>
+    <input matInput formControlName="defaultDestination">
+    <button mat-button (click)="saveDefaultDestination()" class="inline-save-button" *ngIf="settings.get('defaultDestination').value && defaultDestination!==settings.get('defaultDestination').value"
+      matSuffix mat-icon-button aria-label="Save">
+      <mat-icon>check</mat-icon>
+    </button>
+  </mat-form-field>
 </form>
 
 <div class="setting-footer" fxLayout="row" fxLayoutAlign="space-evenly center">

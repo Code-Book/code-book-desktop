@@ -9,7 +9,7 @@
 
     <mat-list fxLayout="column" fxLayoutAlign="space-between start">
       <mat-form-field style="margin-top:8px;" *ngFor="let item of template?.parameters" appearance="outline" color="accent">
-        <mat-label>{{item.name}}</mat-label>
+        <mat-label>{{item.title || item.name}}</mat-label>
         <input matInput [(ngModel)]="parameterModel[item.name]">
         <mat-hint>{{item.message}}</mat-hint>
       </mat-form-field>

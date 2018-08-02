@@ -1,8 +1,9 @@
 import * as nodePath from 'path';
 
-function injectHelpers(plop: any, templatePath: string) {
+function injectHelpers(plop: any, templatePath: string, defaultDestination: string) {
     plop.addHelper('__destinationDir', (path: any) => {
         if (path) { return nodePath.resolve(process.cwd(), path); }
+        if (defaultDestination) { return nodePath.resolve(process.cwd(), defaultDestination); }
         return nodePath.resolve(process.cwd(), '.');
     });
 
@@ -13,13 +14,17 @@ function injectHelpers(plop: any, templatePath: string) {
 
 module.exports = function (plop: any) {
     let templatePath = '';
+    let defaultDestination = '';
     process.argv.forEach(argument => {
         if (argument.includes('--templatePath')) {
             templatePath = argument.replace('--templatePath=', '').replace(/\/$/, '');
         }
+        if (argument.includes('--defaultDestination')) {
+            defaultDestination = argument.replace('--defaultDestination=', '').replace(/\/$/, '');
+        }
     })
 
-    injectHelpers(plop, templatePath);
+    injectHelpers(plop, templatePath, defaultDestination);
 
     const templateData = require(templatePath + '/template.json')
 
