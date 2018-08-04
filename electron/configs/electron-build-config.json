@@ -17,6 +17,7 @@
         "output": "../builds/${version}/"
     },
     "mac": {
-        "category": "public.app-category.developer-tools"
+        "category": "public.app-category.developer-tools",
+        "identity": null
     }
 }
