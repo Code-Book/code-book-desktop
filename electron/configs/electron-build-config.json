@@ -14,7 +14,7 @@
     ],
     "directories": {
         "buildResources": "build/icon.*",
-        "output": "../builds/${version}/${platform}/"
+        "output": "../builds/${version}/"
     },
     "mac": {
         "category": "public.app-category.developer-tools"
