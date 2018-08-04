@@ -3,13 +3,16 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "build": "ng build",
+    "build:electron": "cd ./electron && npm run build",
+    "build:code-book": "ng build",
+    "build:merge": "rm -rf ./electron/dist/www/ && mkdir ./electron/dist/www/ && cp -R ./dist/code-book/ ./electron/dist/www/",
+    "build": "npm run build:electron && npm run build:code-book && npm run build:merge",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "version:update": "npm version $VERSION && cd ./electron && npm version $VERSION",
     "start": "ng serve --no-open & npm run electron:start dev live",
-    "start:static": "npm run electron:start dev",
+    "start:static": "cd ./electron && npm run start:no-build dev",
     "electron:start": "cd ./electron && npm run start"
   },
   "private": true,

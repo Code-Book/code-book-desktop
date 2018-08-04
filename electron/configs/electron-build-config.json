@@ -1,23 +1,22 @@
 {
     "appId": "com.codewhilenerd.codebook",
     "productName": "CodeBook",
+    "asar": true,
+    "compression": "normal",
+    "artifactName": "${productName}-${version}.${ext}",
+    "files": [
+        "!src/*",
+        "!test/*",
+        "!node_modules/*",
+        "!configs/*",
+        "!tsconfig.json",
+        "!tslint.json"
+    ],
     "directories": {
-        "output": "electron-builds",
-        "buildResources": "build/icon.*"
+        "buildResources": "build/icon.*",
+        "output": "../builds/${version}/${platform}/"
     },
-    "win": {
-        "target": {
-            "target": "nsis",
-            "arch": [
-                "x64"
-            ]
-        }
-    },
-    "nsis": {
-        "oneClick": false,
-        "allowToChangeInstallationDirectory": true,
-        "perMachine": true,
-        "createDesktopShortcut": true,
-        "createStartMenuShortcut": true
+    "mac": {
+        "category": "public.app-category.developer-tools"
     }
 }
