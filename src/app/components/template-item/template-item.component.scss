@@ -6,15 +6,14 @@
     margin: auto !important;
 }
 
-mat-card-content{
-    font-size: small;
-    white-space: normal; /* Wrap lines of text */
-    overflow: hidden; /* Hide text that goes beyond the boundaries of the div */
-    text-overflow: ellipsis; /* Ellipses (cross-browser) */
-    -o-text-overflow: ellipsis; /* Ellipses (cross-browser) */
-}
 
 ::ng-deep  .mat-grid-tile .mat-figure{
     display: unset !important;
     margin: 20px !important;
+}
+
+.template-item{
+    padding: 8px; 
+    height: calc(100% - 28px);
+    border-radius: 8px;
 }

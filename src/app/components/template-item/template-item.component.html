@@ -1,15 +1,14 @@
-<mat-card style="height:100%;" class="primaryColorMatCard">
-
-  <mat-card-header>
+<div class="primaryColorMatCard template-item" fxLayout="column" fxLayoutAlign="space-between none">
+  <mat-card-header fxLayout="row" fxLayoutAlign="center center">
     <mat-card-title>{{template.name}}</mat-card-title>
   </mat-card-header>
 
-  <mat-card-content>
+  <mat-card-content style="margin: 12px;">
     {{template.description?.short}}
   </mat-card-content>
 
-  <mat-card-actions fxLayout="row" fxLayoutAlign="end end">
+  <div fxLayout="row" fxLayoutAlign="end center">
     <button mat-button color="accent" (click)="generateCode()">GENERATE</button>
-  </mat-card-actions>
+  </div>
 
-</mat-card>
+</div>

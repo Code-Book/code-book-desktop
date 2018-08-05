@@ -42,8 +42,8 @@ app.on('activate', () => {
 function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
-        width: 1024,
-        height: 512,
+        width: 960,
+        height: 600,
         title: "CodeBook",
         frame: false,
         titleBarStyle: 'hidden',
