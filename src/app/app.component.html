@@ -1,10 +1,10 @@
 <div class="main-container" [ngClass]="settingsAppTheme | async">
     <mat-toolbar color="primary" class="main-toolbar">
         <mat-toolbar-row>
-            <span>CodeBook</span>
+            <span id="mainTitle">CodeBook</span>
             <span class="equal-spacer"></span>
 
-            <button mat-mini-fab color="accent" [matMenuTriggerFor]="settingMenu">
+            <button id="mainIconSettings" mat-mini-fab color="accent" [matMenuTriggerFor]="settingMenu">
                 <mat-icon>settings</mat-icon>
             </button>
 
