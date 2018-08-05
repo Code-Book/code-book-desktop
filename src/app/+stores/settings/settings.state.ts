@@ -5,7 +5,7 @@ export interface SettingsState {
         theme: string,
         defaultDestination?: string;
         templatePaths: {
-            filesystem: string[]
+            filesystem?: string
         }
     };
 }
@@ -15,8 +15,6 @@ export const initialSettingsState: SettingsState = {
     settingChanged: false,
     settings: {
         theme: 'dark-theme',
-        templatePaths: {
-            filesystem: []
-        }
+        templatePaths: {}
     }
 };

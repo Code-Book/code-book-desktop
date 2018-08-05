@@ -12,17 +12,27 @@ export class TemplateGenerateService {
         });
     }
 
-    async generateTemplate(args: any): Promise<boolean> {
+    async generateTemplate(args: any): Promise<{
+        success: boolean,
+        message?: string
+    }> {
         process.argv.push(`--templatePath=${args.path}`);
         process.argv.push(`--defaultDestination=${args.defaultDestination}`);
         const plop = nodePlop(__dirname + `/plopfile.js`);
 
         const basicAdd = plop.getGenerator(plop.getGeneratorList()[0].name);
-        basicAdd.runActions(args.parameters).then((results: any) => {
-            console.log(results);
-        });
+        const templateRunResponse = await basicAdd.runActions(args.parameters);
 
-        return true;
+        if (!!templateRunResponse.failures && templateRunResponse.failures.length <= 0) {
+            return {
+                success: true
+            };
+        } else {
+            return {
+                success: false,
+                message: templateRunResponse.failures[0].error || 'Unable to generate code'
+            };
+        }
     }
 
 }

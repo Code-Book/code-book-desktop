@@ -1,14 +1,13 @@
 ::ng-deep .mat-card-header-text{
     .mat-card-title{
         font-size: large;
+        font-weight: 500;
     }
     margin: auto !important;
 }
 
 mat-card-content{
     font-size: small;
-    line-height: 1.5em; /* Sets line height to 1.5 times text size */
-    height: 3em; /* Sets the div height to 2x line-height (3 times text size) */
     white-space: normal; /* Wrap lines of text */
     overflow: hidden; /* Hide text that goes beyond the boundaries of the div */
     text-overflow: ellipsis; /* Ellipses (cross-browser) */

@@ -1,7 +1,7 @@
 import { filter, map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ElectronService } from 'ngx-electron';
 import { AppState } from '../../app.state';
 
@@ -20,6 +20,8 @@ export class GenerateCodeComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
+    private zone: NgZone,
     private electronService: ElectronService,
     private store: Store<AppState>) { }
 
@@ -48,7 +50,13 @@ export class GenerateCodeComponent implements OnInit {
     if (this.electronService.isElectronApp) {
       const requestID = Math.floor(Math.random() * 100);
       this.electronService.ipcRenderer.on('TEMPLATE_GENERATE_RESPONSE' + `-${requestID}`, (event, arg) => {
-        console.log(arg);
+        if (arg.success) {
+          this.zone.run(() => {
+            this.router.navigate(['']);
+          });
+        } else {
+          console.log(arg.message);
+        }
       });
       this.electronService.ipcRenderer.send('TEMPLATE_GENERATE_REQUEST', {
         uuid: requestID,
@@ -57,7 +65,6 @@ export class GenerateCodeComponent implements OnInit {
         defaultDestination: this.settings.defaultDestination
       });
     }
-    console.log(this.parameterModel);
   }
 
 }

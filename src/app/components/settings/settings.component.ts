@@ -1,9 +1,10 @@
 import { filter, map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
-import { SetThemeAction, AddFileSystemTemplatePathAction, SetDefaultDestinationPathAction } from '../../+stores/settings/settings.module';
+import { SetThemeAction, SetDefaultDestinationPathAction, SetFileSystemTemplatePathAction } from '../../+stores/settings/settings.module';
 import { AppState } from '../../app.state';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-settings',
@@ -12,22 +13,9 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class SettingsComponent implements OnInit {
 
-  themes = [
-    {
-      name: 'MidNight',
-      value: 'dark-theme'
-    },
-    {
-      name: 'White Light',
-      value: 'light-theme'
-    },
-    {
-      name: 'Ferrari',
-      value: 'red-theme'
-    }
-  ];
-
+  themes = environment.themes;
   savedTemplatePath;
+  defaultDestination;
 
   settings: FormGroup;
 
@@ -43,14 +31,31 @@ export class SettingsComponent implements OnInit {
     this.store.select(state => state.Settings).pipe(
       filter(res => !res.isLoading), map(res => res.settings)
     ).subscribe(res => {
-      this.savedTemplatePath = res.templatePaths && res.templatePaths.filesystem ? res.templatePaths.filesystem[0] : '';
+      this.savedTemplatePath =
+        (res.templatePaths && res.templatePaths.filesystem ? res.templatePaths.filesystem : '');
+
+      this.defaultDestination =
+        (res.defaultDestination || '');
+
       this.settings.patchValue({
         theme: res.theme,
-        fileSystemTemplatePath: res.templatePaths && res.templatePaths.filesystem ? res.templatePaths.filesystem[0] : '',
-        defaultDestination: res.defaultDestination || ''
+        fileSystemTemplatePath: this.settings.get('fileSystemTemplatePath').value || this.savedTemplatePath,
+        defaultDestination: this.settings.get('defaultDestination').value || this.defaultDestination
       });
     });
 
+  }
+
+  templatePathFolderSelect(path) {
+    this.settings.patchValue({
+      fileSystemTemplatePath: `${path}/`,
+    });
+  }
+
+  defaultDestinationFolderSelect(path) {
+    this.settings.patchValue({
+      defaultDestination: `${path}/`,
+    });
   }
 
   themeSelected(themeValue) {
@@ -59,7 +64,7 @@ export class SettingsComponent implements OnInit {
 
 
   saveFileSystemTemplatePath() {
-    this.store.dispatch(new AddFileSystemTemplatePathAction(this.settings.get('fileSystemTemplatePath').value));
+    this.store.dispatch(new SetFileSystemTemplatePathAction(this.settings.get('fileSystemTemplatePath').value));
   }
 
   saveDefaultDestination() {

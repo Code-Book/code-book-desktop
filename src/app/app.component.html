@@ -7,24 +7,22 @@
             <button id="mainIconSettings" mat-mini-fab color="accent" [matMenuTriggerFor]="settingMenu">
                 <mat-icon>settings</mat-icon>
             </button>
-
-
         </mat-toolbar-row>
     </mat-toolbar>
 
-    <mat-menu #settingMenu="matMenu">
-        <button mat-menu-item [matMenuTriggerFor]="themeMenu">Theme</button>
-        <button mat-menu-item [routerLink]="['settings']">More Settings</button>
-    </mat-menu>
 
-    <mat-menu #themeMenu="matMenu">
-        <button mat-menu-item (click)="setTheme('dark-theme')">Midnight</button>
-        <button mat-menu-item (click)="setTheme('light-theme')">White Light</button>
-        <button mat-menu-item (click)="setTheme('red-theme')">Ferrari</button>
-    </mat-menu>
 
     <div class="primaryColorBG">
         <router-outlet></router-outlet>
     </div>
 
 </div>
+
+<mat-menu #settingMenu="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="themeMenu">Theme</button>
+    <button mat-menu-item [routerLink]="['settings']">More Settings</button>
+</mat-menu>
+
+<mat-menu #themeMenu="matMenu">
+    <button mat-menu-item *ngFor="let theme of themes" (click)="setTheme(theme.class)">{{theme.name}}</button>
+</mat-menu>

@@ -1,9 +1,10 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { ElectronService } from 'ngx-electron';
 import { Store } from '@ngrx/store';
-import { filter, map, distinctUntilChanged } from 'rxjs/operators';
+import { filter, map, distinctUntilChanged, startWith } from 'rxjs/operators';
 import observeOnZone from '../../common/observeOnZone';
 import { AppState } from '../../app.state';
+import { ObservableMedia } from '@angular/flex-layout';
 
 @Component({
   selector: 'app-template-list',
@@ -16,6 +17,7 @@ export class TemplateListComponent implements OnInit {
   constructor(
     private electronService: ElectronService,
     private store: Store<AppState>,
+    private observableMedia: ObservableMedia,
     private zone: NgZone) {
     this.templates = [];
   }
@@ -28,20 +30,18 @@ export class TemplateListComponent implements OnInit {
         map(res => res.settings.templatePaths),
         distinctUntilChanged()
       ).subscribe(templatePaths => {
-        templatePaths.filesystem.forEach(templatePath => {
-          if (this.electronService.isElectronApp) {
-            const requestID = Math.floor(Math.random() * 100);
-            this.electronService.ipcRenderer.on('TEMPLATE_LIST_RESPONSE' + `-${requestID}`, (event, arg) => {
-              this.zone.run(() => {
-                this.templates.push(...arg);
-              });
+        if (this.electronService.isElectronApp) {
+          const requestID = Math.floor(Math.random() * 100);
+          this.electronService.ipcRenderer.on('TEMPLATE_LIST_RESPONSE' + `-${requestID}`, (event, arg) => {
+            this.zone.run(() => {
+              this.templates.push(...arg);
             });
-            this.electronService.ipcRenderer.send('TEMPLATE_LIST_REQUEST', {
-              uuid: requestID,
-              path: templatePath
-            });
-          }
-        });
+          });
+          this.electronService.ipcRenderer.send('TEMPLATE_LIST_REQUEST', {
+            uuid: requestID,
+            path: templatePaths.filesystem
+          });
+        }
       });
   }
 
