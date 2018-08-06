@@ -1,12 +1,13 @@
 <div class="primaryColorMatCard template-item" fxLayout="column" fxLayoutAlign="space-between none">
-  <mat-card-header fxLayout="row" fxLayoutAlign="center center">
-    <mat-card-title>{{template.name}}</mat-card-title>
-  </mat-card-header>
+  <div fxLayout="column" fxLayoutAlign="start none">
+    <mat-card-header fxLayout="row" fxLayoutAlign="center center">
+      <mat-card-title>{{template.name}}</mat-card-title>
+    </mat-card-header>
 
-  <mat-card-content style="margin: 12px;">
-    {{template.description?.short}}
-  </mat-card-content>
-
+    <mat-card-content style="margin-top: 12px;">
+      {{template.description?.short}}
+    </mat-card-content>
+  </div>
   <div fxLayout="row" fxLayoutAlign="end center">
     <button mat-button color="accent" (click)="generateCode()">GENERATE</button>
   </div>

@@ -3,6 +3,9 @@
         font-size: large;
         font-weight: 500;
     }
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     margin: auto !important;
 }
 
@@ -13,6 +16,7 @@
 }
 
 .template-item{
+    padding-top:16px;
     padding: 8px; 
     height: calc(100% - 28px);
     border-radius: 8px;

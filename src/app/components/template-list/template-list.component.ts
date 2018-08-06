@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit, NgZone } from '@angular/core';
 import { ElectronService } from 'ngx-electron';
 import { Store } from '@ngrx/store';
@@ -14,6 +15,8 @@ import { ObservableMedia } from '@angular/flex-layout';
 export class TemplateListComponent implements OnInit {
   templates: Array<any>;
 
+  public cols: Observable<number>;
+
   constructor(
     private electronService: ElectronService,
     private store: Store<AppState>,
@@ -23,6 +26,24 @@ export class TemplateListComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    const grid = new Map([
+      ['xs', 1],
+      ['sm', 2],
+      ['md', 3],
+      ['lg', 3],
+      ['xl', 4]
+    ]);
+    let start: number;
+    grid.forEach((cols, mqAlias) => {
+      if (this.observableMedia.isActive(mqAlias)) {
+        start = cols;
+      }
+    });
+    this.cols = this.observableMedia.asObservable().pipe(map(change => {
+      return grid.get(change.mqAlias);
+    }), startWith(start));
+
     this.store.select(state => state.Settings)
       .pipe(
         observeOnZone(this.zone),
@@ -43,6 +64,21 @@ export class TemplateListComponent implements OnInit {
           });
         }
       });
+  }
+
+  getHeightWidthratio(count) {
+    if (count === 4) {
+      return '2:1';
+    }
+    if (count === 3) {
+      return '2:1';
+    }
+    if (count === 2) {
+      return '3:1.5';
+    }
+    if (count === 1) {
+      return '3:1';
+    }
   }
 
 }
