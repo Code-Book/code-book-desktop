@@ -44,6 +44,7 @@ function createWindow() {
     mainWindow = new BrowserWindow({
         width: 960,
         height: 600,
+        minWidth: 425,
         title: "CodeBook",
         frame: false,
         titleBarStyle: 'hidden',
