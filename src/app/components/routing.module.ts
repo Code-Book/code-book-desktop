@@ -10,6 +10,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { AboutComponent } from './about/about.component';
 import { TemplateItemComponent } from './template-item/template-item.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FolderInputComponent } from '../folder-input/folder-input.component';
 
 const routes: Routes = [
     { path: 'settings', component: SettingsComponent },
@@ -34,7 +35,8 @@ const routes: Routes = [
         GenerateCodeComponent,
         SettingsComponent,
         AboutComponent,
-        TemplateItemComponent]
+        TemplateItemComponent,
+        FolderInputComponent]
 })
 export class AppRoutingModule {
 }

@@ -7,38 +7,13 @@
     </mat-select>
   </mat-form-field>
 
+  <app-folder-input [label]="'Set File System Template Location'" (eventSave)="saveFileSystemTemplatePath($event)" [savedValue]="savedTemplatePath"
+    [showSaveButton]="true" formControlName="fileSystemTemplatePath"></app-folder-input>
 
-  <mat-form-field appearance="outline" color="accent">
-    <mat-label>Set File System Template Location</mat-label>
-    <input #templatePathFolderInput type="file" style="display:none" (change)="templatePathFolderSelect(templatePathFolderInput.files[0].path)"
-      webkitDirectory>
-    <button mat-button (click)="templatePathFolderInput.click()" class="inline-save-button" matPrefix mat-icon-button aria-label="Select Folder">
-      <mat-icon>folder_open</mat-icon>
-    </button>
 
-    <input matInput formControlName="fileSystemTemplatePath">
+  <app-folder-input [label]="'Set Default Destination Path for generated files'" (eventSave)="saveDefaultDestination($event)"
+    [savedValue]="defaultDestination" [showSaveButton]="true" formControlName="defaultDestination"></app-folder-input>
 
-    <button mat-button (click)="saveFileSystemTemplatePath()" class="inline-save-button" *ngIf="settings.get('fileSystemTemplatePath').value && savedTemplatePath!==settings.get('fileSystemTemplatePath').value"
-      matSuffix mat-icon-button aria-label="Save">
-      <mat-icon>check</mat-icon>
-    </button>
-  </mat-form-field>
-
-  <mat-form-field appearance="outline" color="accent">
-    <mat-label>Set Default Destination Path for generated files</mat-label>
-    <input #defaultDestinationFolderInput type="file" style="display:none" (change)="defaultDestinationFolderSelect(defaultDestinationFolderInput.files[0].path)"
-      webkitDirectory>
-    <button mat-button (click)="defaultDestinationFolderInput.click()" class="inline-save-button" matPrefix mat-icon-button aria-label="Select Folder">
-      <mat-icon>folder_open</mat-icon>
-    </button>
-
-    <input matInput formControlName="defaultDestination">
-
-    <button mat-button (click)="saveDefaultDestination()" class="inline-save-button" *ngIf="settings.get('defaultDestination').value && defaultDestination!==settings.get('defaultDestination').value"
-      matSuffix mat-icon-button aria-label="Save">
-      <mat-icon>check</mat-icon>
-    </button>
-  </mat-form-field>
 </form>
 
 <div class="setting-footer" fxLayout="row" fxLayoutAlign="space-evenly center">

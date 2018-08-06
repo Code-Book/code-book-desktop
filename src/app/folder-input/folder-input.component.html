@@ -1,0 +1,16 @@
+<mat-form-field appearance="outline" color="accent">
+  <mat-label>{{label}}</mat-label>
+  <input #folderInput type="file" style="display:none" (change)="onChange(folderInput.files[0].path)" webkitDirectory>
+  <button mat-button (click)="folderInput.click()" class="inline-save-button" matPrefix mat-icon-button aria-label="Select Folder">
+    <mat-icon>folder_open</mat-icon>
+  </button>
+
+  <input matInput type="text" [(ngModel)]="value">
+  <mat-hint *ngIf="hint">{{hint}}</mat-hint>
+
+
+  <button *ngIf="showSaveButton && _value!==savedValue" mat-button (click)="onSaveEvent()" class="inline-save-button" matSuffix
+    mat-icon-button aria-label="Save">
+    <mat-icon>check</mat-icon>
+  </button>
+</mat-form-field>

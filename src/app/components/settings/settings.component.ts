@@ -25,6 +25,14 @@ export class SettingsComponent implements OnInit {
       fileSystemTemplatePath: [''],
       defaultDestination: ['']
     });
+
+    this.settings.get('fileSystemTemplatePath').valueChanges.subscribe(e => {
+      this.settings.get('fileSystemTemplatePath').setValue(e, { emitEvent: false });
+    });
+
+    this.settings.get('defaultDestination').valueChanges.subscribe(e => {
+      this.settings.get('defaultDestination').setValue(e, { emitEvent: false });
+    });
   }
 
   ngOnInit() {
@@ -46,24 +54,13 @@ export class SettingsComponent implements OnInit {
 
   }
 
-  templatePathFolderSelect(path) {
-    this.settings.patchValue({
-      fileSystemTemplatePath: `${path}/`,
-    });
-  }
-
-  defaultDestinationFolderSelect(path) {
-    this.settings.patchValue({
-      defaultDestination: `${path}/`,
-    });
-  }
 
   themeSelected(themeValue) {
     this.store.dispatch(new SetThemeAction(themeValue));
   }
 
 
-  saveFileSystemTemplatePath() {
+  saveFileSystemTemplatePath(e) {
     this.store.dispatch(new SetFileSystemTemplatePathAction(this.settings.get('fileSystemTemplatePath').value));
   }
 

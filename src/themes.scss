@@ -10,6 +10,7 @@
     $mainToolBarTopPadding : 4px;
 
     .main-toolbar{
+        -webkit-app-region: drag;
         padding-top: $mainToolBarTopPadding;
         height: $mainToolBarHeight;
         position: sticky;
