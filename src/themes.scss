@@ -67,6 +67,23 @@ $mat-black-white: (
         width: 100%;
     }
 
+    .template-item-header{
+        display: inline-block;
+        position: relative;
+    }
+    
+    .template-item-header:after{
+        $is-dark-theme: map-get($theme, is-dark);
+        content: "";
+        height: 1px;
+        width: 60%;
+        background-color: if($is-dark-theme, $light-primary-text, $dark-primary-text);
+        position: absolute;
+        bottom: -.2em;
+        left: 50%;
+        transform: translate(-50%);
+    }
+
     @include angular-material-theme($theme);
   }
 
@@ -82,15 +99,6 @@ $mat-black-white: (
 .dark-theme {
     $custom-primary: mat-palette($mat-grey, 900);
     $custom-accent: mat-palette($mat-blue-grey, 600);
-
-    $custom-theme: mat-dark-theme($custom-primary, $custom-accent);
-
-    @include update-theme($custom-theme);
-}
-
-.red-theme {
-    $custom-primary: mat-palette($mat-red, 900);
-    $custom-accent: mat-palette($mat-blue-grey, 800);
 
     $custom-theme: mat-dark-theme($custom-primary, $custom-accent);
 

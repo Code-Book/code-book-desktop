@@ -11,10 +11,12 @@ import { AboutComponent } from './about/about.component';
 import { TemplateItemComponent } from './template-item/template-item.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FolderInputComponent } from '../folder-input/folder-input.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 const routes: Routes = [
     { path: 'settings', component: SettingsComponent },
     { path: 'about', component: AboutComponent },
+    { path: 'feedback', component: FeedbackComponent },
     { path: '', component: TemplateListComponent },
     { path: 'generate-code/:template', component: GenerateCodeComponent }
 ];
@@ -36,6 +38,7 @@ const routes: Routes = [
         SettingsComponent,
         AboutComponent,
         TemplateItemComponent,
+        FeedbackComponent,
         FolderInputComponent]
 })
 export class AppRoutingModule {

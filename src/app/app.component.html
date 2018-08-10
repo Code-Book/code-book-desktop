@@ -20,7 +20,9 @@
 
 <mat-menu #settingMenu="matMenu">
     <button mat-menu-item [matMenuTriggerFor]="themeMenu">Theme</button>
-    <button mat-menu-item [routerLink]="['settings']">More Settings</button>
+    <button mat-menu-item [routerLink]="['settings']">Settings</button>
+    <button mat-menu-item [routerLink]="['feedback']">Feedback</button>
+    <button mat-menu-item [routerLink]="['about']">About</button>
 </mat-menu>
 
 <mat-menu #themeMenu="matMenu">

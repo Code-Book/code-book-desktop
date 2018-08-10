@@ -21,3 +21,7 @@
     height: calc(100% - 28px);
     border-radius: 8px;
 }
+
+::ng-deep mat-card-content{
+    margin-top: 6px;
+}
