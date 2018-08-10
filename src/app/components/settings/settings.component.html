@@ -1,20 +1,24 @@
-<form [formGroup]="settings">
+<mat-card class="primaryColorMatCard">
 
-  <mat-form-field appearance="outline" color="accent">
-    <mat-label>Change Theme</mat-label>
-    <mat-select formControlName="theme" (selectionChange)="themeSelected($event.value)">
-      <mat-option *ngFor="let item of themes" [value]="item.class">{{item.name}}</mat-option>
-    </mat-select>
-  </mat-form-field>
+  <form [formGroup]="settings">
 
-  <app-folder-input [label]="'Set File System Template Location'" (eventSave)="saveFileSystemTemplatePath($event)" [savedValue]="savedTemplatePath"
-    [showSaveButton]="true" formControlName="fileSystemTemplatePath"></app-folder-input>
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Change Theme</mat-label>
+      <mat-select formControlName="theme" (selectionChange)="themeSelected($event.value)">
+        <mat-option *ngFor="let item of themes" [value]="item.class">{{item.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <app-folder-input [label]="'Set File System Template Location'" (eventSave)="saveFileSystemTemplatePath($event)" [savedValue]="savedTemplatePath"
+      [showSaveButton]="true" formControlName="fileSystemTemplatePath"></app-folder-input>
 
 
-  <app-folder-input [label]="'Set Default Destination Path for generated files'" (eventSave)="saveDefaultDestination($event)"
-    [savedValue]="defaultDestination" [showSaveButton]="true" formControlName="defaultDestination"></app-folder-input>
+    <app-folder-input [label]="'Set Default Destination Path for generated files'" (eventSave)="saveDefaultDestination($event)"
+      [savedValue]="defaultDestination" [showSaveButton]="true" formControlName="defaultDestination"></app-folder-input>
 
-</form>
+  </form>
+</mat-card>
+
 
 <div class="setting-footer" fxLayout="row" fxLayoutAlign="space-evenly center">
   <button mat-flat-button color="accent" [routerLink]="['']">Back</button>
