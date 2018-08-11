@@ -12,6 +12,7 @@ import { TemplateItemComponent } from './template-item/template-item.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FolderInputComponent } from '../folder-input/folder-input.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { MatTooltipDefaultOptions, MAT_TOOLTIP_DEFAULT_OPTIONS } from '@angular/material';
 
 const routes: Routes = [
     { path: 'settings', component: SettingsComponent },
@@ -20,6 +21,12 @@ const routes: Routes = [
     { path: '', component: TemplateListComponent },
     { path: 'generate-code/:template', component: GenerateCodeComponent }
 ];
+
+export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
+    showDelay: 1000,
+    hideDelay: 200,
+    touchendHideDelay: 200,
+};
 
 @NgModule({
     imports: [
@@ -39,7 +46,10 @@ const routes: Routes = [
         AboutComponent,
         TemplateItemComponent,
         FeedbackComponent,
-        FolderInputComponent]
+        FolderInputComponent],
+    providers: [
+        { provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: myCustomTooltipDefaults }
+    ]
 })
 export class AppRoutingModule {
 }

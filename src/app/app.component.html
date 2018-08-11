@@ -4,7 +4,15 @@
             <span id="mainTitle">CodeBook</span>
             <span class="equal-spacer"></span>
 
-            <button id="mainIconSettings" mat-mini-fab color="accent" [matMenuTriggerFor]="settingMenu">
+            <button mat-icon-button color="accent" [routerLink]="['feedback']" matTooltip="Feedback">
+                <mat-icon>feedback</mat-icon>
+            </button>
+
+            <button mat-icon-button color="accent" matTooltip="Share">
+                <mat-icon>share</mat-icon>
+            </button>
+
+            <button id="mainIconSettings" matTooltip="Settings" mat-icon-button color="accent" [matMenuTriggerFor]="settingMenu">
                 <mat-icon>settings</mat-icon>
             </button>
         </mat-toolbar-row>
