@@ -85,6 +85,13 @@ $mat-black-white: (
         transform: translate(-50%);
     }
 
+
+    a {
+        text-decoration: unset;
+        color: mat-color($warn);
+        font-weight: 700;
+    }
+
     @include angular-material-theme($theme);
   }
 

@@ -3,3 +3,17 @@
 mat-grid-list{
     //padding-bottom: unset !important;
 }
+::ng-deep .mat-card-header-text{
+    .mat-card-title{
+        font-size: large;
+        font-weight: 500;
+    }
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: auto !important;
+}
+
+mat-card{
+    margin: 32px;
+}

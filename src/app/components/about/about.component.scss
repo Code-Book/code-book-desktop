@@ -5,3 +5,18 @@
     bottom: 16px;
     width: 100%;
 }
+
+mat-card{
+    margin-top: 16px;
+}
+
+::ng-deep .mat-card-header-text{
+    .mat-card-title{
+        font-size: large;
+        font-weight: 500;
+    }
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: unset !important;
+}

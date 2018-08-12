@@ -21,7 +21,8 @@ export class FeedbackComponent {
       easeOfUse: [1],
       performance: [1],
       coolness: [1],
-      message: ['']
+      message: [''],
+      suggestedName: ['']
     });
 
     for (const item of this.customFormItems) {

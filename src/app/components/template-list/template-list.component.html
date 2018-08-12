@@ -1,5 +1,21 @@
-<mat-grid-list [cols]="cols | async" [rowHeight]="getHeightWidthratio(cols | async)">
+<mat-grid-list *ngIf="templates.length" [cols]="cols | async" [rowHeight]="getHeightWidthratio(cols | async)">
   <mat-grid-tile *ngFor="let item of templates">
     <app-template-item [template]="item"></app-template-item>
   </mat-grid-tile>
 </mat-grid-list>
+
+<mat-card *ngIf="!templates.length">
+  <mat-card-header>
+    <mat-card-title>No templates yet !!</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <ul>
+      <li>
+        Click <a matTooltip="https://github.com/Code-Book/sample-tamplates/archive/master.zip" href="https://github.com/Code-Book/sample-tamplates/archive/master.zip">here</a>
+        to Download sample templates.
+      </li>
+      <li>Go to <b [routerLink]="['/settings']">Settings</b> and set template path</li>
+    </ul>
+
+  </mat-card-content>
+</mat-card>
