@@ -1,7 +1,30 @@
-<p>
-  feedback works!
-</p>
+<mat-card class="primaryColorMatCard">
+
+  <form [formGroup]="feedbackForm">
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Enter your email</mat-label>
+      <input matInput formControlName="email" required>
+    </mat-form-field>
+
+    <app-rating label="How useful is this app?" formControlName="useFulNess"></app-rating>
+
+    <app-rating label="How easy was it to setup and use?" formControlName="easeOfUse"></app-rating>
+
+    <app-rating label="How was the application performance?" formControlName="performance"></app-rating>
+
+    <app-rating label="How cool is the app?" formControlName="coolness"></app-rating>
+
+
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Add your thoughts</mat-label>
+      <textarea matInput formControlName="message"></textarea>
+    </mat-form-field>
+
+  </form>
+
+</mat-card>
 
 <div class="feedback-footer" fxLayout="row" fxLayoutAlign="space-evenly center">
   <button mat-flat-button color="accent" [routerLink]="['']">Back</button>
+  <button mat-flat-button color="accent" [disabled]="feedbackForm.invalid" (click)="onSubmit()">Submit</button>
 </div>

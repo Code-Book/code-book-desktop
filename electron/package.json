@@ -22,6 +22,7 @@
     "@types/inquirer": "0.0.42",
     "body-parser": "^1.18.3",
     "fs-extra": "^7.0.0",
+    "node-machine-id": "^1.1.10",
     "node-plop": "github:guptasanchit90/node-plop#master",
     "request": "^2.87.0",
     "request-promise": "^4.2.2",

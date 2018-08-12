@@ -1,0 +1,11 @@
+<mat-form-field appearance="outline" color="accent">
+  <mat-label>{{label}}</mat-label>
+  <button mat-icon-button color="warn" *ngFor="let ratingId of ratingArr;index as i" [id]="'star_'+i" (click)="onChange(i+1)"
+    [matTooltip]="ratingId+1" matTooltipPosition="above">
+    <mat-icon>
+      {{showIcon(i)}}
+    </mat-icon>
+  </button>
+  <input matInput placeholder="Input" hidden [value]="label">
+
+</mat-form-field>

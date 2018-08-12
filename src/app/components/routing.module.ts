@@ -10,9 +10,10 @@ import { SettingsComponent } from './settings/settings.component';
 import { AboutComponent } from './about/about.component';
 import { TemplateItemComponent } from './template-item/template-item.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { FolderInputComponent } from '../folder-input/folder-input.component';
+import { FolderInputComponent } from './folder-input/folder-input.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { MatTooltipDefaultOptions, MAT_TOOLTIP_DEFAULT_OPTIONS } from '@angular/material';
+import { RatingComponent } from './rating/rating.component';
 
 const routes: Routes = [
     { path: 'settings', component: SettingsComponent },
@@ -46,6 +47,7 @@ export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
         AboutComponent,
         TemplateItemComponent,
         FeedbackComponent,
+        RatingComponent,
         FolderInputComponent],
     providers: [
         { provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: myCustomTooltipDefaults }

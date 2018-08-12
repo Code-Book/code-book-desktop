@@ -15,17 +15,31 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const app = express();
+const moment = require("moment-timezone");
 app.use(cors({ origin: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.post('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
-    try {
-        yield admin.firestore().collection('feedback')
-            .add(req.body);
-        res.send(202);
+    if (req.get('timeZone') && req.get('machineId')) {
+        try {
+            yield admin.firestore().collection('feedback')
+                .add(Object.assign({}, req.body, { createdOn: moment().format(), timeZone: req.get('timeZone'), machineId: req.get('machineId') }));
+            res.json({
+                status: 'success'
+            }).sendStatus(202);
+        }
+        catch (error) {
+            res.json({
+                status: 'failure',
+                message: 'Internal Server error'
+            }).sendStatus(500);
+        }
     }
-    catch (error) {
-        res.send(500);
+    else {
+        res.json({
+            status: 'failure',
+            message: 'Missing Header'
+        }).sendStatus(400);
     }
 }));
 exports.feedback = functions.https.onRequest(app);

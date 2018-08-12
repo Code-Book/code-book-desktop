@@ -35,6 +35,8 @@
     "@ngrx/store-devtools": "^6.0.1",
     "@ngx-pwa/local-storage": "^6.0.0-rc.1",
     "core-js": "^2.5.4",
+    "moment": "^2.22.2",
+    "moment-timezone": "^0.5.21",
     "ngx-electron": "^1.0.4",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
