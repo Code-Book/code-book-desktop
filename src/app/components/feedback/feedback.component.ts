@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class FeedbackComponent {
   feedbackForm: FormGroup;
 
-  customFormItems = ['useFulNess', 'easeOfUse', 'performance', 'coolness'];
+  customFormItems = ['useFulNess', 'easeOfUse', 'performance', 'coolness', 'shouldOpenSource', 'likeToContribute'];
 
   constructor(
     private feedbackService: FeedbackService,
@@ -22,7 +22,9 @@ export class FeedbackComponent {
       performance: [1],
       coolness: [1],
       message: [''],
-      suggestedName: ['']
+      suggestedName: [''],
+      shouldOpenSource: [1],
+      likeToContribute: [1]
     });
 
     for (const item of this.customFormItems) {
