@@ -1,6 +1,6 @@
 ::ng-deep .mat-card-header-text{
     .mat-card-title{
-        font-size: large;
+        font-size: medium;
         font-weight: 500;
     }
     white-space: nowrap;
@@ -16,8 +16,7 @@
 }
 
 .template-item{
-    padding-top:26px;
-    padding: 8px; 
+    padding: 12px; 
     height: calc(100% - 28px);
     border-radius: 8px;
 }
