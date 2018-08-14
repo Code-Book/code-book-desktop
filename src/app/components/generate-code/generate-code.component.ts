@@ -34,7 +34,7 @@ export class GenerateCodeComponent implements OnInit {
     this.template = JSON.parse(atob(this.route.snapshot.paramMap.get('template')));
 
     this.template.parameters.forEach(element => {
-      this.parameterModel[element.name] = '';
+      this.parameterModel[element.name] = element.default || '';
     });
   }
 

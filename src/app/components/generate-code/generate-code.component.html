@@ -8,11 +8,17 @@
   <mat-card-content>
 
     <mat-list fxLayout="column" fxLayoutAlign="space-between">
-      <mat-form-field style="margin-top:8px;" *ngFor="let item of template?.parameters" appearance="outline" color="accent">
-        <mat-label>{{item.title || item.name}}</mat-label>
-        <input matInput [(ngModel)]="parameterModel[item.name]">
-        <mat-hint>{{item.message}}</mat-hint>
-      </mat-form-field>
+      <div *ngFor="let item of template?.parameters" class="template-parameter">
+        <mat-form-field *ngIf="item.type === 'input'" appearance="outline" color="accent">
+          <mat-label>{{item.title || item.name}}</mat-label>
+
+          <input matInput [(ngModel)]="parameterModel[item.name]">
+
+          <mat-hint>{{item.message}}</mat-hint>
+        </mat-form-field>
+
+        <mat-checkbox [(ngModel)]="parameterModel[item.name]" *ngIf="item.type === 'checkbox'">{{item.title || item.name}}</mat-checkbox>
+      </div>
     </mat-list>
 
   </mat-card-content>

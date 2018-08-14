@@ -17,3 +17,13 @@ mat-card{
     margin-right: 24px;
     margin-bottom: 65px;
 }
+
+.template-parameter{
+    mat-form-field{
+        width: 100%;
+    }
+    mat-checkbox{
+        width: 100%;
+    }
+    margin-top: 16px;
+}
