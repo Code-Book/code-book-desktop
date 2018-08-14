@@ -9,15 +9,21 @@
 
     <mat-list fxLayout="column" fxLayoutAlign="space-between">
       <div *ngFor="let item of template?.parameters" class="template-parameter">
+
         <mat-form-field *ngIf="item.type === 'input'" appearance="outline" color="accent">
           <mat-label>{{item.title || item.name}}</mat-label>
-
           <input matInput [(ngModel)]="parameterModel[item.name]">
-
           <mat-hint>{{item.message}}</mat-hint>
         </mat-form-field>
 
         <mat-checkbox [(ngModel)]="parameterModel[item.name]" *ngIf="item.type === 'checkbox'">{{item.title || item.name}}</mat-checkbox>
+
+        <mat-form-field *ngIf="item.type === 'default'" appearance="outline" color="accent">
+          <mat-label>{{item.title || item.name}}</mat-label>
+          <textarea matInput [(ngModel)]="parameterModel[item.name]"></textarea>
+          <mat-hint>{{item.message}}</mat-hint>
+        </mat-form-field>
+
       </div>
     </mat-list>
 

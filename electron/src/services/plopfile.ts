@@ -10,6 +10,13 @@ function injectHelpers(plop: any, templatePath: string, defaultDestination: stri
     plop.addHelper('__templatePath', () => {
         return templatePath;
     });
+
+    plop.addHelper('__toArray', (value: string) => {
+        const array = value.split(',').map(function (item) {
+            return item.trim();
+        });;
+        return array;
+    });
 }
 
 module.exports = function (plop: any) {
