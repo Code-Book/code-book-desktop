@@ -1,4 +1,6 @@
 import * as functions from 'firebase-functions';
-import * as app from './app';
+import { default as apiRoutes } from './routes/api';
 
-exports.api = functions.https.onRequest(app.default);
+module.exports = {
+    api: functions.https.onRequest(apiRoutes)
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FeedbackService } from '../../services/feedback.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-feedback',
@@ -14,6 +15,7 @@ export class FeedbackComponent {
 
   constructor(
     private feedbackService: FeedbackService,
+    private router: Router,
     fb: FormBuilder) {
     this.feedbackForm = fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -36,9 +38,10 @@ export class FeedbackComponent {
   }
 
   onSubmit() {
-    this.feedbackService.postFeedback(this.feedbackForm.value).subscribe(res => {
-      console.log(res);
-    });
+    this.feedbackService.postFeedback(this.feedbackForm.value).subscribe(() => { });
+    setTimeout(() => {
+      this.router.navigate(['']);
+    }, 500);
   }
 
 }
