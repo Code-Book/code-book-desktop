@@ -19,7 +19,8 @@ class App {
     }
 
     private routes(): void {
-        this.express.use('/api', apiRoute.default);
+        // This route is already at /api
+        this.express.use('/', apiRoute.default);
     }
 
 }

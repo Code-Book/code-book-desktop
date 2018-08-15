@@ -5,7 +5,7 @@ export class ApiRoutes {
 
     public getRoutes() {
         const router = express.Router();
-        router.post('/feedback', feedbackRoute.default);
+        router.use('/feedback', feedbackRoute.default);
         return router;
     }
 }

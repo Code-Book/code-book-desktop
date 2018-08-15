@@ -13,28 +13,20 @@ export class FeedbackRoutes {
 
     public async feedbackPost(req: express.Request, res: express.Response, next: express.NextFunction) {
         if (req.get('timeZone') && req.get('machineId')) {
-            try {
-                await admin.firestore().collection('feedback')
-                    .add({
-                        ...req.body,
-                        createdOn: moment().format(),
-                        timeZone: req.get('timeZone'),
-                        machineId: req.get('machineId')
-                    })
-                res.json({
-                    status: 'success'
-                }).sendStatus(202);
-            } catch (error) {
-                res.json({
-                    status: 'failure',
-                    message: 'Internal Server error'
-                }).sendStatus(500);
-            }
+
+            await admin.firestore().collection('feedback')
+                .add({
+                    ...req.body,
+                    createdOn: moment().format(),
+                    timeZone: req.get('timeZone'),
+                    machineId: req.get('machineId')
+                }).catch(error => {
+                    console.log(error);
+                })
+
+            res.status(202).json({ status: 'success' });
         } else {
-            res.json({
-                status: 'failure',
-                message: 'Missing Header'
-            }).sendStatus(400);
+            res.status(400).json({ status: 'failure', message: 'Missing Header' });
         }
     }
 }
