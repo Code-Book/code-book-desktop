@@ -15,7 +15,7 @@ export class FeedbackService {
     return this.http.post<{
       status: string,
       message?: string
-    }>('https://us-central1-codebook-1.cloudfunctions.net/feedback/', data, {
+    }>('https://us-central1-codebook-1.cloudfunctions.net/api/feedback', data, {
       headers: {
         'Content-Type': 'application/json',
         'machineId': this.electronService.ipcRenderer.sendSync('MACHINE_ID_REQUEST'),

@@ -6,17 +6,14 @@ admin.initializeApp();
 import * as  express from 'express';
 import * as  cors from 'cors';
 import * as  bodyParser from 'body-parser';
-
-const app = express();
-
 import * as moment from 'moment-timezone';
 
-
+const app = express();
 app.use(cors({ origin: true }));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-app.post('/', async (req, res) => {
+app.post('/feedback', async (req, res) => {
     if (req.get('timeZone') && req.get('machineId')) {
         try {
             await admin.firestore().collection('feedback')
@@ -44,4 +41,8 @@ app.post('/', async (req, res) => {
 });
 
 
-exports.feedback = functions.https.onRequest(app);
+const api = functions.https.onRequest(app);
+
+module.exports = {
+    api
+}

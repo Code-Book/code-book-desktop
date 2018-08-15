@@ -14,12 +14,12 @@ admin.initializeApp();
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const app = express();
 const moment = require("moment-timezone");
+const app = express();
 app.use(cors({ origin: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.post('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
+app.post('/feedback', (req, res) => __awaiter(this, void 0, void 0, function* () {
     if (req.get('timeZone') && req.get('machineId')) {
         try {
             yield admin.firestore().collection('feedback')
@@ -42,5 +42,8 @@ app.post('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
         }).sendStatus(400);
     }
 }));
-exports.feedback = functions.https.onRequest(app);
+const api = functions.https.onRequest(app);
+module.exports = {
+    api
+};
 //# sourceMappingURL=index.js.map
