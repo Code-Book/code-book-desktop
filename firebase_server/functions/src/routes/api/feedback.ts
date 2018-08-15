@@ -5,13 +5,18 @@ admin.initializeApp();
 
 export class FeedbackRoutes {
 
-    public getRoutes() {
-        const router = express.Router();
-        router.post('/', this.feedbackPost);
-        return router;
+    public router: express.Router;
+
+    constructor() {
+        this.router = express.Router();
+        this.init();
     }
 
-    public async feedbackPost(req: express.Request, res: express.Response, next: express.NextFunction) {
+    init() {
+        this.router.post('/', this.postRoute);
+    }
+
+    public async postRoute(req: express.Request, res: express.Response, next: express.NextFunction) {
         if (req.get('timeZone') && req.get('machineId')) {
 
             await admin.firestore().collection('feedback')
@@ -31,4 +36,4 @@ export class FeedbackRoutes {
     }
 }
 
-export default new FeedbackRoutes().getRoutes();
+export default new FeedbackRoutes().router;
