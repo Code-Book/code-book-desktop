@@ -12,7 +12,7 @@
 
         <mat-form-field *ngIf="item.type === 'input'" appearance="outline" color="accent">
           <mat-label>{{item.title || item.name}}</mat-label>
-          <input matInput [(ngModel)]="parameterModel[item.name]">
+          <input matInput [(ngModel)]="parameterModel[item.name]" [required]="item.required">
           <mat-hint>{{item.message}}</mat-hint>
         </mat-form-field>
 
@@ -20,7 +20,7 @@
 
         <mat-form-field *ngIf="item.type === 'default'" appearance="outline" color="accent">
           <mat-label>{{item.title || item.name}}</mat-label>
-          <textarea matInput [(ngModel)]="parameterModel[item.name]"></textarea>
+          <textarea matInput [(ngModel)]="parameterModel[item.name]" [required]="item.required"></textarea>
           <mat-hint>{{item.message}}</mat-hint>
         </mat-form-field>
 

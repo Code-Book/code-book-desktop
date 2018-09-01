@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
 import { ElectronService } from 'ngx-electron';
 import * as moment from 'moment-timezone';
+
 @Injectable({
   providedIn: 'root'
 })

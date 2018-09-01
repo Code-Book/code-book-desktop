@@ -67,4 +67,10 @@ export class GenerateCodeComponent implements OnInit {
     }
   }
 
+  // areParametersValid(){
+  //   return Object.keys(this.parameterModel).forEach(item=> {
+  //     if(item.required && this.parameterModel)
+  //   })
+  // }
+
 }

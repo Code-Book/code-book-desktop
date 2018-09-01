@@ -11,11 +11,15 @@ function injectHelpers(plop: any, templatePath: string, defaultDestination: stri
         return templatePath;
     });
 
-    plop.addHelper('__toArray', (value: string) => {
-        const array = value.split(',').map(function (item) {
+    plop.addHelper('__toArray', (value: string, separator: string | RegExp = ',') => {
+        const array = value.split(separator).map(function (item) {
             return item.trim();
         });;
         return array;
+    });
+
+    plop.addHelper('__toJson', (value: string) => {
+        return JSON.parse(value);
     });
 }
 
