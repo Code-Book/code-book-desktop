@@ -4,6 +4,8 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ElectronService } from 'ngx-electron';
 import { AppState } from '../../app.state';
+import { MatSnackBar } from '@angular/material';
+import { CodeGenerateHelper } from '../../helpers/code-generate.heler';
 
 @Component({
   selector: 'app-generate-code',
@@ -13,9 +15,7 @@ import { AppState } from '../../app.state';
 export class GenerateCodeComponent implements OnInit {
 
   template;
-
   parameterModel = {};
-
   settings;
 
   constructor(
@@ -23,6 +23,7 @@ export class GenerateCodeComponent implements OnInit {
     private router: Router,
     private zone: NgZone,
     private electronService: ElectronService,
+    public snackBar: MatSnackBar,
     private store: Store<AppState>) { }
 
   ngOnInit() {
@@ -47,30 +48,34 @@ export class GenerateCodeComponent implements OnInit {
   }
 
   onGenerate() {
-    if (this.electronService.isElectronApp) {
-      const requestID = Math.floor(Math.random() * 100);
-      this.electronService.ipcRenderer.on('TEMPLATE_GENERATE_RESPONSE' + `-${requestID}`, (event, arg) => {
-        if (arg.success) {
-          this.zone.run(() => {
-            this.router.navigate(['']);
-          });
-        } else {
-          console.log(arg.message);
-        }
-      });
-      this.electronService.ipcRenderer.send('TEMPLATE_GENERATE_REQUEST', {
-        uuid: requestID,
-        path: this.template.path,
-        parameters: this.parameterModel,
-        defaultDestination: this.settings.defaultDestination
+    if (CodeGenerateHelper.validateModel(this.template.parameters, this.parameterModel)) {
+      if (this.electronService.isElectronApp) {
+        const requestID = Math.floor(Math.random() * 100);
+        this.electronService.ipcRenderer.on('TEMPLATE_GENERATE_RESPONSE' + `-${requestID}`, (event, arg) => {
+          if (arg.success) {
+            this.zone.run(() => {
+              this.router.navigate(['']);
+            });
+          } else {
+            console.log(arg.message);
+          }
+        });
+        this.electronService.ipcRenderer.send('TEMPLATE_GENERATE_REQUEST', {
+          uuid: requestID,
+          path: this.template.path,
+          parameters: this.parameterModel,
+          defaultDestination: this.settings.defaultDestination
+        });
+      }
+    } else {
+      this.snackBar.open('Some Parameters are missing', '', {
+        duration: 2000,
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        politeness: 'assertive'
       });
     }
   }
 
-  // areParametersValid(){
-  //   return Object.keys(this.parameterModel).forEach(item=> {
-  //     if(item.required && this.parameterModel)
-  //   })
-  // }
 
 }
