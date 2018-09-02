@@ -14,13 +14,14 @@ import { FolderInputComponent } from './folder-input/folder-input.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { MatTooltipDefaultOptions, MAT_TOOLTIP_DEFAULT_OPTIONS } from '@angular/material';
 import { RatingComponent } from './rating/rating.component';
+import { CodeGenerateGuard } from '../guards/code-generate.guard';
 
 const routes: Routes = [
     { path: 'settings', component: SettingsComponent },
     { path: 'about', component: AboutComponent },
     { path: 'feedback', component: FeedbackComponent },
     { path: '', component: TemplateListComponent },
-    { path: 'generate-code/:template', component: GenerateCodeComponent }
+    { path: 'generate-code/:template', component: GenerateCodeComponent, canActivate: [CodeGenerateGuard] }
 ];
 
 export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
@@ -37,7 +38,7 @@ export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
         ReactiveFormsModule,
         AppMaterialModule,
         FlexLayoutModule,
-        RouterModule.forRoot(routes)
+        RouterModule.forRoot(routes, { useHash: true })
     ],
     exports: [RouterModule],
     declarations: [
@@ -50,6 +51,7 @@ export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
         RatingComponent,
         FolderInputComponent],
     providers: [
+        CodeGenerateGuard,
         { provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: myCustomTooltipDefaults }
     ]
 })
