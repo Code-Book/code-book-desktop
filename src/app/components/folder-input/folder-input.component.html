@@ -5,12 +5,13 @@
     <mat-icon>folder_open</mat-icon>
   </button>
 
-  <input matInput type="text" [(ngModel)]="value">
+  <input matInput *ngIf="showSaveButton" type="text" [(ngModel)]="value">
+  <input matInput *ngIf="!showSaveButton" type="text" [(ngModel)]="value || savedValue">
   <mat-hint *ngIf="hint">{{hint}}</mat-hint>
 
 
-  <button *ngIf="showSaveButton && _value!==savedValue" mat-button (click)="onSaveEvent()" class="inline-save-button" matSuffix
-    mat-icon-button aria-label="Save">
+  <button *ngIf="showSaveButton && _value!==savedValue" mat-button (click)="onSaveEvent()" class="inline-save-button"
+    matSuffix mat-icon-button aria-label="Save">
     <mat-icon>check</mat-icon>
   </button>
 </mat-form-field>

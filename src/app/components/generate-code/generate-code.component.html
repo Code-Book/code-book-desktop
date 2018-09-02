@@ -10,13 +10,22 @@
     <mat-list fxLayout="column" fxLayoutAlign="space-between">
       <div *ngFor="let item of template?.parameters" class="template-parameter">
 
-        <mat-form-field *ngIf="item.type === 'input'" appearance="outline" color="accent">
-          <mat-label>{{item.title || item.name}}</mat-label>
-          <input matInput [(ngModel)]="parameterModel[item.name]" [required]="item.required">
-          <mat-hint>{{item.message}}</mat-hint>
-        </mat-form-field>
+        <div *ngIf="item.type === 'input'" [ngSwitch]="item.subType">
 
-        <mat-checkbox [(ngModel)]="parameterModel[item.name]" *ngIf="item.type === 'checkbox'">{{item.title || item.name}}</mat-checkbox>
+
+          <app-folder-input *ngSwitchCase="'dir'" [label]="item.title || item.name" [(ngModel)]="parameterModel[item.name]"
+            [savedValue]="parameterModel[item.name]" [showSaveButton]="false"></app-folder-input>
+
+          <mat-form-field *ngSwitchDefault appearance="outline" color="accent">
+            <mat-label>{{item.title || item.name}}</mat-label>
+            <input matInput [(ngModel)]="parameterModel[item.name]" [required]="item.required">
+            <mat-hint>{{item.message}}</mat-hint>
+          </mat-form-field>
+        </div>
+
+
+        <mat-checkbox [(ngModel)]="parameterModel[item.name]" *ngIf="item.type === 'checkbox'">{{item.title ||
+          item.name}}</mat-checkbox>
 
         <mat-form-field *ngIf="item.type === 'default'" appearance="outline" color="accent">
           <mat-label>{{item.title || item.name}}</mat-label>
@@ -35,3 +44,13 @@
   <button mat-flat-button color="accent" [routerLink]="['']">Cancel</button>
   <button mat-flat-button color="accent" (click)="onGenerate()">Generate</button>
 </div>
+
+<ng-template #simpleInput>
+
+</ng-template>
+
+<ng-template #folderInput>
+  <mat-label>{{item.title || item.name}}</mat-label>
+  <input matInput [(ngModel)]="parameterModel[item.name]" [required]="item.required">
+  <mat-hint>{{item.message}}</mat-hint>
+</ng-template>
