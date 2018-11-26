@@ -1,3 +1,8 @@
+<mat-form-field *ngIf="showSearchOption | async" fxLayoutAlign="space-evenly center" class="search" color="accent">
+  <mat-label>Search</mat-label>
+  <input matInput color="primary" (input)="onFind($event.target.value)" type="search">
+</mat-form-field>
+
 <mat-grid-list *ngIf="templates.length" [cols]="cols | async" [rowHeight]="getHeightWidthratio(cols | async)">
   <mat-grid-tile *ngFor="let item of templates">
     <app-template-item [template]="item"></app-template-item>

@@ -1,12 +1,13 @@
+import { GlobalStoreState } from './+stores/global/global-store.state';
 import { environment } from './../environments/environment';
 import { MatDialog } from '@angular/material';
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { map, distinctUntilChanged, filter, tap, pairwise } from 'rxjs/operators';
+import { map, distinctUntilChanged, filter, tap, pairwise, take } from 'rxjs/operators';
 import { SetThemeAction, LoadInitialSettingSAction } from './+stores/settings/settings.module';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { AppState } from './app.state';
-import { SettingsComponent } from './components/settings/settings.component';
+import { SearchHideAction, SearchShowAction } from './+stores/global/global-store.module';
 
 @Component({
   selector: 'app-root',
@@ -50,4 +51,17 @@ export class AppComponent implements OnInit {
     this.store.dispatch(new SetThemeAction(themeName));
   }
 
+  toggleSearch() {
+    this.store.select(state => state.GlobalStore)
+      .pipe(
+        map((res: GlobalStoreState) => res.search.visible),
+        take(1))
+      .subscribe(res => {
+        if (res) {
+          this.store.dispatch(new SearchHideAction());
+        } else {
+          this.store.dispatch(new SearchShowAction());
+        }
+      });
+  }
 }

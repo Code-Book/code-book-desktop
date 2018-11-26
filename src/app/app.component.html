@@ -4,6 +4,10 @@
             <span id="mainTitle">CodeBook</span>
             <span class="equal-spacer"></span>
 
+            <button mat-icon-button color="accent" (click)="toggleSearch()" matTooltip="Search">
+                <mat-icon>search</mat-icon>
+            </button>
+
             <button mat-icon-button color="accent" [routerLink]="['about']" matTooltip="About">
                 <mat-icon>help</mat-icon>
             </button>
