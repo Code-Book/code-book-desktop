@@ -29,7 +29,7 @@ export class TemplateListService {
 
     async getListOfTemplates(path: string): Promise<string[]> {
         let templates = await this.getListOfFolders(path);
-        const templateDetails: any = [];
+        let templateDetails: any = [];
         templates.forEach(item => {
             if (require('fs').existsSync(path + item + '/template.json')) {
                 templateDetails.push({
@@ -41,5 +41,4 @@ export class TemplateListService {
 
         return templateDetails;
     }
-
 }

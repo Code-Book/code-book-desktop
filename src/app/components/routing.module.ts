@@ -15,6 +15,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { MatTooltipDefaultOptions, MAT_TOOLTIP_DEFAULT_OPTIONS } from '@angular/material';
 import { RatingComponent } from './rating/rating.component';
 import { CodeGenerateGuard } from '../guards/code-generate.guard';
+import { ArrayInputComponent } from './array-input/array-input.component';
 
 const routes: Routes = [
     { path: 'settings', component: SettingsComponent },
@@ -49,7 +50,8 @@ export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
         TemplateItemComponent,
         FeedbackComponent,
         RatingComponent,
-        FolderInputComponent],
+        FolderInputComponent,
+        ArrayInputComponent],
     providers: [
         CodeGenerateGuard,
         { provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: myCustomTooltipDefaults }

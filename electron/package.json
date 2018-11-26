@@ -34,7 +34,7 @@
     "@types/request-promise": "^4.1.42",
     "@types/tmp": "0.0.33",
     "copyfiles": "^2.0.0",
-    "electron": "^2.0.5",
+    "electron": "^3.0.10",
     "electron-builder": "^20.26.1",
     "electron-toolkit": "^1.0.24",
     "mocha": "^5.2.0",

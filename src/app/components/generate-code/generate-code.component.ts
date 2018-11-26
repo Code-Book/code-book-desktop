@@ -6,6 +6,7 @@ import { ElectronService } from 'ngx-electron';
 import { AppState } from '../../app.state';
 import { MatSnackBar } from '@angular/material';
 import { CodeGenerateHelper } from '../../helpers/code-generate.heler';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-generate-code',

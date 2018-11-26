@@ -11,8 +11,6 @@
       <div *ngFor="let item of template?.parameters" class="template-parameter">
 
         <div *ngIf="item.type === 'input'" [ngSwitch]="item.subType">
-
-
           <app-folder-input *ngSwitchCase="'dir'" [label]="item.title || item.name" [(ngModel)]="parameterModel[item.name]"
             [savedValue]="parameterModel[item.name]" [showSaveButton]="false"></app-folder-input>
 
@@ -23,15 +21,19 @@
           </mat-form-field>
         </div>
 
-
-        <mat-checkbox [(ngModel)]="parameterModel[item.name]" *ngIf="item.type === 'checkbox'">{{item.title ||
+        <mat-checkbox [(ngModel)]="parameterModel[item.name]" *ngIf="item.type === 'checkbox'">{{item.title
+          ||
           item.name}}</mat-checkbox>
 
-        <mat-form-field *ngIf="item.type === 'default'" appearance="outline" color="accent">
-          <mat-label>{{item.title || item.name}}</mat-label>
-          <textarea matInput [(ngModel)]="parameterModel[item.name]" [required]="item.required"></textarea>
-          <mat-hint>{{item.message}}</mat-hint>
-        </mat-form-field>
+        <div *ngIf="item.type === 'default'" [ngSwitch]="item.subType">
+          <app-array-input *ngSwitchCase="'array'" [label]="item.title || item.name" [(ngModel)]="parameterModel[item.name]"></app-array-input>
+
+          <mat-form-field *ngSwitchDefault appearance="outline" color="accent">
+            <mat-label>{{item.title || item.name}}</mat-label>
+            <textarea matInput [(ngModel)]="parameterModel[item.name]" [required]="item.required"></textarea>
+            <mat-hint>{{item.message}}</mat-hint>
+          </mat-form-field>
+        </div>
 
       </div>
     </mat-list>
