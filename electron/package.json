@@ -2,6 +2,8 @@
   "name": "code-book-shell",
   "version": "0.0.1",
   "description": "",
+  "author": "Sanchit Gupta <gupta.sanchit90@gmail.com> (http://sanchitgupta.netlify.com)",
+  "homepage": "http://sanchitgupta.netlify.com",
   "main": "./dist/main.js",
   "bin": "./dist/main.js",
   "scripts": {
@@ -15,7 +17,6 @@
     "electron-toolkit": "electron ./node_modules/electron-toolkit"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/fs-extra": "^5.0.4",

@@ -18,6 +18,18 @@
     },
     "mac": {
         "category": "public.app-category.developer-tools",
-        "identity": null
+        "identity": null,
+        "icon": "build/icons/mac/app.icns"
+    },
+    "win": {
+        "target": "NSIS",
+        "icon": "build/icons/win/app.ico"
+    },
+    "linux": {
+        "target": [
+            "AppImage",
+            "deb"
+        ],
+        "icon": "build/icons/png/"
     }
 }
