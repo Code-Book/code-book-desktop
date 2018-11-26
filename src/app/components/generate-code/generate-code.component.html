@@ -1,11 +1,33 @@
+<button class="info-button" color="primary" (click)="showInfo=!showInfo" mat-mini-fab float>
+  <mat-icon>info</mat-icon>
+</button>
+
 <mat-card class="primaryColorMatCard">
 
-  <mat-card-header>
+  <mat-card-header fxLayout="row" fxLayoutAlign="center center">
     <mat-card-title class="text-on-primary-bg">{{template?.name}}</mat-card-title>
-    <mat-card-subtitle>{{template?.description?.short}}</mat-card-subtitle>
   </mat-card-header>
+  <mat-card-subtitle style="text-align: center" *ngIf="showInfo">{{template?.version}}</mat-card-subtitle>
+  <mat-card-subtitle style="text-align: center" *ngIf="showInfo">{{template?.author}} ({{template?.email}})</mat-card-subtitle>
+  <mat-card-subtitle style="text-align: center" *ngIf="showInfo">{{template?.description?.long}}</mat-card-subtitle>
 
   <mat-card-content>
+
+    <div fxLayout="row" fxLayoutAlign="space-between" style="margin-bottom: 8px;">
+      <mat-chip-list>
+        <mat-chip *ngFor="
+      let language of template.languages" color="secondary" selected>{{language}}</mat-chip>
+      </mat-chip-list>
+
+      <mat-chip-list>
+        <mat-chip *ngFor="let framework of template.frameworks" color="warn" selected>{{framework}}</mat-chip>
+      </mat-chip-list>
+    </div>
+
+    <!-- <mat-chip-list *ngIf="showInfo">
+      <mat-chip *ngFor="let tag of template.tags" color="primary" selected>{{tag}}</mat-chip>
+    </mat-chip-list> -->
+
 
     <mat-list fxLayout="column" fxLayoutAlign="space-between">
       <div *ngFor="let item of template?.parameters" class="template-parameter">

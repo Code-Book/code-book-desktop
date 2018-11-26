@@ -27,3 +27,23 @@ mat-card{
     }
     margin-top: 16px;
 }
+
+mat-chip{
+    font-size: small;
+}
+
+.info-button{
+    float: right;
+    z-index: 10;
+    margin-right: 34px;
+    margin-top: 10px;
+    background-color: #00000000 !important;
+    box-shadow: unset !important;
+}
+
+.info-card{
+    background-color: #00000000 !important;
+    box-shadow: unset !important;
+    margin: 10px;
+    padding: unset !important;
+}
