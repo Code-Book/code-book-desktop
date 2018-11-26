@@ -4,7 +4,8 @@
             <span id="mainTitle">CodeBook</span>
             <span class="equal-spacer"></span>
 
-            <button mat-icon-button color="accent" (click)="toggleSearch()" matTooltip="Search">
+            <button [disabled]="!(showSearchOption | async)" mat-icon-button color="accent" (click)="toggleSearch()"
+                matTooltip="Search">
                 <mat-icon>search</mat-icon>
             </button>
 

@@ -3,7 +3,7 @@ import { environment } from './../environments/environment';
 import { MatDialog } from '@angular/material';
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { map, distinctUntilChanged, filter, tap, pairwise, take } from 'rxjs/operators';
+import { map, distinctUntilChanged, filter, tap, pairwise, take, debounceTime } from 'rxjs/operators';
 import { SetThemeAction, LoadInitialSettingSAction } from './+stores/settings/settings.module';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { AppState } from './app.state';
@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
 
   settingsAppTheme;
   themes = environment.themes;
+  showSearchOption: any;
 
   constructor(
     public store: Store<AppState>,
@@ -45,6 +46,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(new LoadInitialSettingSAction());
+    this.showSearchOption = this.store.select(state => state.GlobalStore)
+      .pipe(map((res: GlobalStoreState) => res.search.enabled), debounceTime(100));
   }
 
   setTheme(themeName: string) {

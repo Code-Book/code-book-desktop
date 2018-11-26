@@ -1,5 +1,6 @@
+import { SearchDisableAction, SearchEnableAction } from './../../+stores/global/global-store.actions';
 import { Observable, Subject } from 'rxjs';
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, OnDestroy } from '@angular/core';
 import { ElectronService } from 'ngx-electron';
 import { Store } from '@ngrx/store';
 import { filter, map, distinctUntilChanged, startWith, debounceTime } from 'rxjs/operators';
@@ -13,7 +14,7 @@ import { GlobalStoreState } from 'src/app/+stores/global/global-store.state';
   templateUrl: './template-list.component.html',
   styleUrls: ['./template-list.component.scss']
 })
-export class TemplateListComponent implements OnInit {
+export class TemplateListComponent implements OnInit, OnDestroy {
   templates: Array<any>;
   originalTemplates: Array<any>;
 
@@ -39,11 +40,12 @@ export class TemplateListComponent implements OnInit {
 
   ngOnInit() {
 
+    this.store.dispatch(new SearchEnableAction());
+
     this.showSearchOption = this.store.select(state => state.GlobalStore)
       .pipe(map((res: GlobalStoreState) => res.search.visible));
 
     this.searchTerm$.pipe(debounceTime(500), distinctUntilChanged()).subscribe(searchTerm => {
-      console.log(searchTerm);
       this.templates = this.originalTemplates.filter(res => {
         return res.name.toLowerCase().trim().indexOf(searchTerm.toLowerCase().trim()) > -1;
       });
@@ -102,6 +104,10 @@ export class TemplateListComponent implements OnInit {
     if (count === 1) {
       return '3:1';
     }
+  }
+
+  ngOnDestroy(): void {
+    this.store.dispatch(new SearchDisableAction());
   }
 
 }
