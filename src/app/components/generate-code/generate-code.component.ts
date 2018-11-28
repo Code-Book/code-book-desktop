@@ -1,3 +1,4 @@
+import { AnalyticsEventAction } from 'src/app/+stores/global/global-store.module';
 import { filter, map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { Component, OnInit, NgZone } from '@angular/core';
@@ -6,7 +7,6 @@ import { ElectronService } from 'ngx-electron';
 import { AppState } from '../../app.state';
 import { MatSnackBar } from '@angular/material';
 import { CodeGenerateHelper } from '../../helpers/code-generate.heler';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'app-generate-code',
@@ -54,11 +54,23 @@ export class GenerateCodeComponent implements OnInit {
         const requestID = Math.floor(Math.random() * 100);
         this.electronService.ipcRenderer.on('TEMPLATE_GENERATE_RESPONSE' + `-${requestID}`, (event, arg) => {
           if (arg.success) {
+
+            this.store.dispatch(new AnalyticsEventAction({
+              category: 'GenerateCode',
+              action: 'Success'
+            }));
+
             this.zone.run(() => {
               this.router.navigate(['']);
             });
           } else {
-            console.log(arg.message);
+
+            this.store.dispatch(new AnalyticsEventAction({
+              category: 'GenerateCode',
+              action: 'Error',
+              label: arg.message
+            }));
+
           }
         });
         this.electronService.ipcRenderer.send('TEMPLATE_GENERATE_REQUEST', {
@@ -69,6 +81,13 @@ export class GenerateCodeComponent implements OnInit {
         });
       }
     } else {
+
+      this.store.dispatch(new AnalyticsEventAction({
+        category: 'GenerateCode',
+        action: 'Error',
+        label: 'Missing Parameters'
+      }));
+
       this.snackBar.open('Some Parameters are missing', '', {
         duration: 2000,
         horizontalPosition: 'center',

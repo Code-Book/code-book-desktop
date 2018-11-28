@@ -35,6 +35,7 @@ app.on('ready', () => {
 
 // If user closes all finds' let's just quit the app
 app.on('window-all-closed', () => {
+    analyticsHelper.trackEvent('Exit', 'App Exit');
     app.quit();
 })
 

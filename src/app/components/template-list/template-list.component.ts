@@ -1,3 +1,4 @@
+import { AnalyticsEventAction } from 'src/app/+stores/global/global-store.module';
 import { SearchDisableAction, SearchEnableAction } from './../../+stores/global/global-store.actions';
 import { Observable, Subject } from 'rxjs';
 import { Component, OnInit, NgZone, OnDestroy } from '@angular/core';
@@ -49,6 +50,14 @@ export class TemplateListComponent implements OnInit, OnDestroy {
       this.templates = this.originalTemplates.filter(res => {
         return res.name.toLowerCase().trim().indexOf(searchTerm.toLowerCase().trim()) > -1;
       });
+
+      this.store.dispatch(new AnalyticsEventAction({
+        category: 'Template',
+        action: 'Search',
+        label: 'ResultCount',
+        value: this.templates.length
+      }));
+
     });
 
     const grid = new Map([
@@ -78,6 +87,14 @@ export class TemplateListComponent implements OnInit, OnDestroy {
         if (this.electronService.isElectronApp) {
           const requestID = Math.floor(Math.random() * 100);
           this.electronService.ipcRenderer.on('TEMPLATE_LIST_RESPONSE' + `-${requestID}`, (event, arg) => {
+
+            this.store.dispatch(new AnalyticsEventAction({
+              category: 'Template',
+              action: 'Load',
+              label: 'ResultCount',
+              value: arg.length
+            }));
+
             this.zone.run(() => {
               this.templates.push(...arg);
               this.originalTemplates.push(...arg);

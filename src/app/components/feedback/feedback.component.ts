@@ -1,7 +1,10 @@
+import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import { FeedbackService } from '../../services/feedback.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppState } from 'src/app/app.state';
+import { AnalyticsEventAction } from 'src/app/+stores/global/global-store.module';
 
 @Component({
   selector: 'app-feedback',
@@ -16,6 +19,7 @@ export class FeedbackComponent {
   constructor(
     private feedbackService: FeedbackService,
     private router: Router,
+    private store: Store<AppState>,
     fb: FormBuilder) {
     this.feedbackForm = fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -38,6 +42,10 @@ export class FeedbackComponent {
   }
 
   onSubmit() {
+    this.store.dispatch(new AnalyticsEventAction({
+      category: 'Feedback',
+      action: 'Submit'
+    }));
     this.feedbackService.postFeedback(this.feedbackForm.value).subscribe(() => { });
     setTimeout(() => {
       this.router.navigate(['']);
