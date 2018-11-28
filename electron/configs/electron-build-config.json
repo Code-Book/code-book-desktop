@@ -3,7 +3,7 @@
     "productName": "CodeBook",
     "asar": true,
     "compression": "normal",
-    "artifactName": "${productName}-${version}.${ext}",
+    "artifactName": "${productName}-${version}-${os}.${ext}",
     "files": [
         "!src/*",
         "!test/*",

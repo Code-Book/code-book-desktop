@@ -14,10 +14,10 @@ export class AnalyticsHelper {
         this.userId = this.nodeStorage.getItem('uid') || uuid();
         this.nodeStorage.setItem('uid', this.userId);
         this.usr = ua('UA-129895816-1', this.userId);
-        this.usr.set('system_arch', 'os.arch()')
-        this.usr.set('system_platform', 'os.platform()')
-        this.usr.set('system_os_version', 'os.release()')
-        this.usr.set('system_os_type', 'os.type()')
+        this.usr.set('system_arch', os.arch())
+        this.usr.set('system_platform', os.platform())
+        this.usr.set('system_os_version', os.release())
+        this.usr.set('system_os_type', os.type())
         this.usr.set('app_version', '0.0.1')
     }
 

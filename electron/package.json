@@ -8,11 +8,11 @@
   "bin": "./dist/main.js",
   "scripts": {
     "build": "tsc",
+    "dist": "rm -rf ../builds/ && electron-builder --m --config ./configs/electron-build-config.json",
+    "start": "npm run build && electron .",
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "start:no-build": "electron .",
-    "start": "npm run build && electron .",
-    "dist": "rm -rf ../builds/ && electron-builder --m --l --w --config ./configs/electron-build-config.json",
     "test": "mocha",
     "electron-toolkit": "electron ./node_modules/electron-toolkit"
   },
