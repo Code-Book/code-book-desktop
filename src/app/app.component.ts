@@ -7,7 +7,8 @@ import { map, distinctUntilChanged, filter, tap, pairwise, take, debounceTime } 
 import { SetThemeAction, LoadInitialSettingSAction } from './+stores/settings/settings.module';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { AppState } from './app.state';
-import { SearchHideAction, SearchShowAction } from './+stores/global/global-store.module';
+import { SearchHideAction, SearchShowAction, AnalyticsScreenAction } from './+stores/global/global-store.module';
+import { Router, NavigationEnd, NavigationError, Event, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -23,8 +24,10 @@ export class AppComponent implements OnInit {
   constructor(
     public store: Store<AppState>,
     public dialog: MatDialog,
-    overlayContainer: OverlayContainer,
-    private elRef: ElementRef) {
+    private router: Router,
+    private activatedroute: ActivatedRoute,
+    overlayContainer: OverlayContainer) {
+    this.trackRouteChanges();
     this.settingsAppTheme = this.store.select(state => state.Settings)
       .pipe(
         filter(res => !res.isLoading),
@@ -66,5 +69,29 @@ export class AppComponent implements OnInit {
           this.store.dispatch(new SearchShowAction());
         }
       });
+  }
+
+  trackRouteChanges() {
+    // this.router.events.subscribe((event: Event) => {
+
+    //   if (event instanceof NavigationEnd) {
+
+    //     console.log(this.activatedroute.snapshot.params);
+    //     this.activatedroute.data.subscribe(res => {
+    //       console.log(res);
+    //     });
+    //     // let yourqueryparameter = this.activatedroute.snapshot.queryparams.yourqueryparameter;
+
+
+    //     // this.store.dispatch(new AnalyticsScreenAction({
+    //     //   screenName: event.url
+    //     // }));
+    //   }
+
+    //   if (event instanceof NavigationError) {
+
+    //   }
+    // });
+
   }
 }

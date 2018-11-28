@@ -1,3 +1,4 @@
+import { AnalyticsHelper } from './helpers/analytics.helper';
 import {
     app,
     BrowserWindow,
@@ -15,6 +16,10 @@ import { MachineIdService } from './services/machine-id.service';
 // be closed automatically when the JavaScrsipt object is garbage collected.
 let mainWindow: Electron.BrowserWindow;
 
+let analyticsHelper = new AnalyticsHelper(app);
+
+(global as any).analyticsHelper = analyticsHelper;
+
 // Hack for SSL error
 app.on('certificate-error', (event, webContents, url, error, certificate, callback) => {
     event.preventDefault();
@@ -23,6 +28,7 @@ app.on('certificate-error', (event, webContents, url, error, certificate, callba
 
 // We are good to do our custom stuff once app is ready
 app.on('ready', () => {
+    analyticsHelper.trackEvent('Launch', 'App Launch');
     createWindow();
     init();
 });

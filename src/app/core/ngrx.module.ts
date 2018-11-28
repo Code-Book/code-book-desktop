@@ -13,6 +13,7 @@ export interface RouterStateUrl {
     url: string;
     params: Params;
     queryParams: Params;
+    title: string;
 }
 
 export class CustomSerializer implements RouterStateSerializer<RouterStateUrl> {
@@ -25,10 +26,11 @@ export class CustomSerializer implements RouterStateSerializer<RouterStateUrl> {
 
         const { url, root: { queryParams } } = routerState;
         const { params } = route;
+        const title = route.data['title'];
 
         // Only return an object including the URL, params and query params
         // instead of the entire snapshot
-        return { url, params, queryParams };
+        return { url, params, queryParams, title };
     }
 }
 

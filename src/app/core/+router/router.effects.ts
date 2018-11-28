@@ -4,6 +4,8 @@ import { Location } from '@angular/common';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { map, tap } from 'rxjs/operators';
 import * as RouterActions from './router.actions';
+import { ROUTER_NAVIGATION, RouterNavigationAction } from '@ngrx/router-store';
+import { RouterStateUrl } from '../ngrx.module';
 
 @Injectable()
 export class RouterEffects {
@@ -27,6 +29,18 @@ export class RouterEffects {
         ofType(RouterActions.FORWARD),
         tap(() => this.location.forward())
     );
+
+    @Effect()
+    updateTitle$ = this.actions$.pipe(
+        ofType(ROUTER_NAVIGATION),
+        map((action: RouterNavigationAction<RouterStateUrl>) => {
+            return ({
+                type: '[Global Store] Analytics Screen', payload: {
+                    path: action.payload.routerState.url,
+                    title: action.payload.routerState.title
+                }
+            });
+        }));
 
     constructor(
         private actions$: Actions,

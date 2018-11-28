@@ -18,11 +18,26 @@ import { CodeGenerateGuard } from '../guards/code-generate.guard';
 import { ArrayInputComponent } from './array-input/array-input.component';
 
 const routes: Routes = [
-    { path: 'settings', component: SettingsComponent },
-    { path: 'about', component: AboutComponent },
-    { path: 'feedback', component: FeedbackComponent },
-    { path: '', component: TemplateListComponent },
-    { path: 'generate-code/:template', component: GenerateCodeComponent, canActivate: [CodeGenerateGuard] }
+    {
+        path: 'settings', component: SettingsComponent,
+        data: { title: 'Settings' }
+    },
+    {
+        path: 'about', component: AboutComponent,
+        data: { title: 'About' }
+    },
+    {
+        path: 'feedback', component: FeedbackComponent,
+        data: { title: 'Feedback' }
+    },
+    {
+        path: '', component: TemplateListComponent,
+        data: { title: 'TemplateList' }
+    },
+    {
+        path: 'generate-code/:template', component: GenerateCodeComponent, canActivate: [CodeGenerateGuard],
+        data: { title: 'GenerateCodeFromTemplate' }
+    }
 ];
 
 export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {

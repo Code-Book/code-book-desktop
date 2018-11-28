@@ -4,6 +4,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import * as settings from './settings.actions';
 import { of } from 'rxjs';
 import { SettingsStorageHook } from './settings.storage.hook';
+import * as globalStore from '../global/global-store.actions';
 
 
 @Injectable()
@@ -22,6 +23,20 @@ export class SettingsEffects {
         return of({ type: settings.LOAD_INITIAL_SETTINGS_SUCCESS, payload: null });
       })
     );
+
+  @Effect() changeSetting$ = this.actions$
+    .pipe(
+      ofType(settings.SET_THEME),
+      map((action: settings.SetThemeAction) => action.payload),
+      map(res => {
+        return {
+          type: globalStore.ANALYTICS_EVENT, payload: {
+            category: 'Setting',
+            action: 'Theme',
+            label: res
+          }
+        };
+      }));
 
   constructor(
     protected settingsStorageHook: SettingsStorageHook,
