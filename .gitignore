@@ -40,3 +40,5 @@ Thumbs.db
 .history/
 builds/
 dist/
+
+*.secure.ts

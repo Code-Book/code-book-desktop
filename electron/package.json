@@ -7,6 +7,7 @@
   "main": "./dist/main.js",
   "bin": "./dist/main.js",
   "scripts": {
+    "config:load": "rm -f src/constants/constants.secure.ts && echo \"export const CODE_BOOK_GA_ID = '$CODE_BOOK_GA_ID';\">>src/constants/constants.secure.ts",
     "build": "tsc",
     "dist": "rm -rf ../builds/ && electron-builder --m --config ./configs/electron-build-config.json",
     "start": "npm run build && electron .",

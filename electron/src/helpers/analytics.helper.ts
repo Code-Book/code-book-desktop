@@ -1,3 +1,4 @@
+import { CODE_BOOK_GA_ID } from './../constants/constants.secure';
 import * as ua from 'universal-analytics';
 import * as uuid from 'uuid/v4';
 import { JSONStorage } from 'node-localstorage';
@@ -10,10 +11,11 @@ export class AnalyticsHelper {
     usr: ua.Visitor;
 
     constructor(app: any) {
+
         this.nodeStorage = new JSONStorage(app.getPath('userData'));
         this.userId = this.nodeStorage.getItem('uid') || uuid();
         this.nodeStorage.setItem('uid', this.userId);
-        this.usr = ua('UA-129895816-1', this.userId);
+        this.usr = ua(CODE_BOOK_GA_ID, this.userId);
         this.usr.set('system_arch', os.arch())
         this.usr.set('system_platform', os.platform())
         this.usr.set('system_os_version', os.release())

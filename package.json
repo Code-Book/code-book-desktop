@@ -5,6 +5,7 @@
     "dist": "npm run build &&  npm run electron:dist",
     "build": "npm run build:electron && npm run build:code-book && npm run build:merge",
     "start": "ng serve --no-open & npm run electron:start dev live",
+    "setup": "npm i && cd ./electron && npm i && npm run config:load",
     "ng": "ng",
     "build:electron": "cd ./electron && npm run build",
     "build:code-book": "ng build",
