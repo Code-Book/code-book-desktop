@@ -10,7 +10,7 @@
   "scripts": {
     "config:load": "rm -f src/constants/constants.secure.ts && echo \"export const CODE_BOOK_GA_ID = '$CODE_BOOK_GA_ID';\">>src/constants/constants.secure.ts",
     "build": "tsc",
-    "dist": "rm -rf ../builds/ && electron-builder --m --l --w --config ./configs/electron-build-config.json",
+    "dist": "rm -rf ../builds/ && electron-builder --m --l --w --config ./configs/electron-build-config.json -p always",
     "start": "npm run build && electron .",
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
