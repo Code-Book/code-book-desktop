@@ -4,7 +4,7 @@
   "description": "Code-Book : Code automation for teams",
   "author": "Sanchit Gupta <gupta.sanchit90@gmail.com> (http://sanchitgupta.netlify.com)",
   "homepage": "https://code-book.github.io/",
-  "repository": "https://github.com/Code-Book/Code-Book.github.io",
+  "repository": "https://github.com/Code-Book/code-book-desktop.git",
   "scripts": {
     "dist": "npm run build &&  npm run electron:dist",
     "build": "npm run build:electron && npm run build:code-book && npm run build:merge",
